@@ -214,6 +214,9 @@ class ComposerStaticInit6b885b57e3ec7733b7d2cba98ddc454e
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'ultraman\\Foundation\\Container' => __DIR__ . '/../..' . '/Foundation/Container.php',
         'ultraman\\Foundation\\Di' => __DIR__ . '/../..' . '/Foundation/DI.php',
+        'ultraman\\Foundation\\Ecode' => __DIR__ . '/../..' . '/Foundation/Ecode.php',
+        'ultraman\\Foundation\\Enumeration' => __DIR__ . '/../..' . '/Foundation/Enumeration.php',
+        'ultraman\\Foundation\\Response' => __DIR__ . '/../..' . '/Foundation/Response.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

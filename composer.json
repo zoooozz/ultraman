@@ -24,6 +24,12 @@
         "post-update-cmd": [
             "composer dump -o"
         ]
+    },
+    "extra": {
+        "branch-alias": {
+        "dev-master": "1.0-dev"
     }
+    
+}
    
 }

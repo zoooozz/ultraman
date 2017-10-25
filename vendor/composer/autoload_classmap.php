@@ -165,4 +165,7 @@ return array(
     'Psr\\Log\\Test\\LoggerInterfaceTest' => $vendorDir . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
     'ultraman\\Foundation\\Container' => $baseDir . '/Foundation/Container.php',
     'ultraman\\Foundation\\Di' => $baseDir . '/Foundation/DI.php',
+    'ultraman\\Foundation\\Ecode' => $baseDir . '/Foundation/Ecode.php',
+    'ultraman\\Foundation\\Enumeration' => $baseDir . '/Foundation/Enumeration.php',
+    'ultraman\\Foundation\\Response' => $baseDir . '/Foundation/Response.php',
 );
