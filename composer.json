@@ -12,7 +12,12 @@
 
     "autoload": {
         "psr-4": {
-            "ultraman\\Foundation\\" : "Foundation/"
+            "ultraman\\Foundation\\" : "Foundation/",
+            "ultraman\\Cache\\" : "Cache/",
+            "ultraman\\Db\\" : "Db/",
+            "ultraman\\Common\\" : "Common/",
+            "ultraman\\Http\\" : "Http/",
+            "ultraman\\Log\\" : "Log/"
         },
         "files": ["App.php"]  
     },

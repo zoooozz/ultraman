@@ -47,7 +47,7 @@ class Model
 
     protected function connect()
     {
-        $db = DI::get('db');
+        $db = DI::get('database');
         if($db == ""){
            	return Response::_end(['msg'=>"db配置为空"],Ecode::SQL_LINK_ERROR);
         }

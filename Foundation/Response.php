@@ -22,7 +22,7 @@ class Response
 	public static function _end($params,$code)
 	{
 		$params['code'] = $code;
-        return  json_encode($params);
+        return  json_encode($params,JSON_UNESCAPED_UNICODE);
 	}
 
 }

@@ -14,7 +14,12 @@ class ComposerStaticInit6b885b57e3ec7733b7d2cba98ddc454e
     public static $prefixLengthsPsr4 = array (
         'u' => 
         array (
+            'ultraman\\Log\\' => 13,
+            'ultraman\\Http\\' => 14,
             'ultraman\\Foundation\\' => 20,
+            'ultraman\\Db\\' => 12,
+            'ultraman\\Common\\' => 16,
+            'ultraman\\Cache\\' => 15,
         ),
         'P' => 
         array (
@@ -32,9 +37,29 @@ class ComposerStaticInit6b885b57e3ec7733b7d2cba98ddc454e
     );
 
     public static $prefixDirsPsr4 = array (
+        'ultraman\\Log\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Log',
+        ),
+        'ultraman\\Http\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Http',
+        ),
         'ultraman\\Foundation\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Foundation',
+        ),
+        'ultraman\\Db\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Db',
+        ),
+        'ultraman\\Common\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Common',
+        ),
+        'ultraman\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Cache',
         ),
         'Psr\\Log\\' => 
         array (
@@ -212,11 +237,18 @@ class ComposerStaticInit6b885b57e3ec7733b7d2cba98ddc454e
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'ultraman\\Cache\\Redis' => __DIR__ . '/../..' . '/Cache/Redis.php',
+        'ultraman\\Common\\CommonFun' => __DIR__ . '/../..' . '/Common/CommonFun.php',
+        'ultraman\\Common\\DataValidator' => __DIR__ . '/../..' . '/Common/DataValidator.php',
+        'ultraman\\Db\\DbTransaction' => __DIR__ . '/../..' . '/Db/DbTransaction.php',
+        'ultraman\\Db\\Model' => __DIR__ . '/../..' . '/Db/Model.php',
         'ultraman\\Foundation\\Container' => __DIR__ . '/../..' . '/Foundation/Container.php',
         'ultraman\\Foundation\\Di' => __DIR__ . '/../..' . '/Foundation/DI.php',
         'ultraman\\Foundation\\Ecode' => __DIR__ . '/../..' . '/Foundation/Ecode.php',
         'ultraman\\Foundation\\Enumeration' => __DIR__ . '/../..' . '/Foundation/Enumeration.php',
         'ultraman\\Foundation\\Response' => __DIR__ . '/../..' . '/Foundation/Response.php',
+        'ultraman\\Http\\Http' => __DIR__ . '/../..' . '/Http/Http.php',
+        'ultraman\\Log\\monoLog' => __DIR__ . '/../..' . '/Log/monoLog.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
