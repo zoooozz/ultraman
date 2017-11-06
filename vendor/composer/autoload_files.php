@@ -6,6 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'd7f4f7522f962c095f835c50e6136087' => $vendorDir . '/hprose/hprose/src/init.php',
     'c8eb2e3d5d98f547626316c83580fab8' => $baseDir . '/App.php',
 );

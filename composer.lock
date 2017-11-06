@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3dac110d4c5e4d4eb06013dad2c289db",
+    "content-hash": "f0bdc6480a7049670bc1792897e032b5",
     "packages": [
         {
             "name": "hprose/hprose",

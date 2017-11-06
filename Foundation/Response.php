@@ -19,10 +19,10 @@ class Response
 	 * @param $code string 错误代码
 	 */
 
-	public static function _end($params,$code)
+	public static function _end($params=[],$code = 101)
 	{
 		$params['code'] = $code;
-        return  json_encode($params);
+        return  json_encode($params,JSON_UNESCAPED_UNICODE);
 	}
 
 }

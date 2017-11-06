@@ -12,7 +12,7 @@ namespace ultraman\Log;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use moondog\Foundation\DI;
+use ultraman\Foundation\DI;
 
 class monoLog
 {
@@ -42,6 +42,7 @@ class monoLog
 
 	public static function write($level = 'INFO',$params = [])
 	{
+     
 		if(count($params) == 0){
 			return true; 
 		}
@@ -58,13 +59,13 @@ class monoLog
         static::$data = $logs;
         static::$level = strtoupper($level);
 
-        $source_name = $config['common']['name']?: "default";
-        $path = $config['path']['record']?: "/tmp";
+        $source_name = $config['common']['service.name']?: "default";
+        $path = $config['path']['log']?: "/tmp";
         $file = date("Ymd");
-        $base_path = $path."/".$source_name.'/'.$file.'.log';       	
+        $base_path = $path."/".$source_name.'/'.$file.'.log';    	
         $log = new Logger($source_name);
         $log->pushHandler(new StreamHandler($base_path));
-        call_user_func_array(array(__NAMESPACE__ .'\Log', static::$level), array($log));
+        call_user_func_array(array(__NAMESPACE__ .'\monoLog', static::$level), array($log));
 	}
     
 	public static function __callStatic($name, $log)

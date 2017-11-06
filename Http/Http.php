@@ -11,7 +11,9 @@
 namespace ultraman\Http;
 
 use ultraman\Foundation\Response;
+use ultraman\Foundation\Ecode;
 use ultraman\Log\monoLog;
+
 
 /**
  * Http请求类

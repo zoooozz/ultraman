@@ -47,7 +47,7 @@ class Model
 
     protected function connect()
     {
-        $db = DI::get('db');
+        $db = DI::get('database');
         if($db == ""){
            	return Response::_end(['msg'=>"db配置为空"],Ecode::SQL_LINK_ERROR);
         }
@@ -175,4 +175,28 @@ class Model
         return $result;
     }
 
+    /**
+     * 搜索组装
+     */
+    
+
+    public function select($f=[],$tab='',$params=[])
+    {
+        if($tab ==""){
+            return false;
+        }
+        $condition = $this->condition($params);
+        $keys = array_keys($f);
+        if($keys !== array_keys($keys)){
+            $f = $keys;
+        }
+
+        $str = '';
+        foreach ($f as $key => $value) {
+                $str.='`'.$value.'`,';
+        }
+        $str = substr($str, 0, -1)?:"*";
+        $items = $this->query("SELECT {$str} FROM {$tab} {$condition}");
+        return $items;
+    }
 }

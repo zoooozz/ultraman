@@ -6,9 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'ultraman\\Log\\' => array($baseDir . '/Log'),
+    'ultraman\\Http\\' => array($baseDir . '/Http'),
     'ultraman\\Foundation\\' => array($baseDir . '/Foundation'),
-    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
-    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
-    'Hprose\\Swoole\\' => array($vendorDir . '/hprose/hprose-swoole/src/Hprose/Swoole'),
-    'Hprose\\' => array($vendorDir . '/hprose/hprose/src/Hprose'),
+    'ultraman\\Db\\' => array($baseDir . '/Db'),
+    'ultraman\\Common\\' => array($baseDir . '/Common'),
+    'ultraman\\Cache\\' => array($baseDir . '/Cache'),
 );
