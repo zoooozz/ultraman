@@ -4,9 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6b885b57e3ec7733b7d2cba98ddc454e
+class ComposerStaticInite3d9c778ced21fc26778dc294ec261ff
 {
     public static $files = array (
+        'd7f4f7522f962c095f835c50e6136087' => __DIR__ . '/..' . '/hprose/hprose/src/init.php',
         'c8eb2e3d5d98f547626316c83580fab8' => __DIR__ . '/../..' . '/App.php',
     );
 
@@ -19,6 +20,19 @@ class ComposerStaticInit6b885b57e3ec7733b7d2cba98ddc454e
             'ultraman\\Db\\' => 12,
             'ultraman\\Common\\' => 16,
             'ultraman\\Cache\\' => 15,
+        ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+        ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
+        ),
+        'H' => 
+        array (
+            'Hprose\\Swoole\\' => 14,
+            'Hprose\\' => 7,
         ),
     );
 
@@ -47,9 +61,182 @@ class ComposerStaticInit6b885b57e3ec7733b7d2cba98ddc454e
         array (
             0 => __DIR__ . '/../..' . '/Cache',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Hprose\\Swoole\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole',
+        ),
+        'Hprose\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hprose/hprose/src/Hprose',
+        ),
     );
 
     public static $classMap = array (
+        'Hprose\\BytesIO' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/BytesIO.php',
+        'Hprose\\ClassManager' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/ClassManager.php',
+        'Hprose\\Client' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Client.php',
+        'Hprose\\Completer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Completer.php',
+        'Hprose\\Deferred' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Deferred.php',
+        'Hprose\\FakeReaderRefer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/FakeReaderRefer.php',
+        'Hprose\\FakeWriterRefer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/FakeWriterRefer.php',
+        'Hprose\\Filter' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Filter.php',
+        'Hprose\\Filter\\JSONRPC\\ClientFilter' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Filter/JSONRPC/ClientFilter.php',
+        'Hprose\\Filter\\JSONRPC\\ServiceFilter' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Filter/JSONRPC/ServiceFilter.php',
+        'Hprose\\Filter\\XMLRPC\\ClientFilter' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Filter/XMLRPC/ClientFilter.php',
+        'Hprose\\Filter\\XMLRPC\\ServiceFilter' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Filter/XMLRPC/ServiceFilter.php',
+        'Hprose\\Formatter' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Formatter.php',
+        'Hprose\\Future' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Future.php',
+        'Hprose\\Future\\CallableWrapper' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Future/CallableWrapper.php',
+        'Hprose\\Future\\UncatchableException' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Future/UncatchableException.php',
+        'Hprose\\Future\\Wrapper' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Future/Wrapper.php',
+        'Hprose\\HandlerManager' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/HandlerManager.php',
+        'Hprose\\Http\\Client' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Http/Client.php',
+        'Hprose\\Http\\Server' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Http/Server.php',
+        'Hprose\\Http\\Service' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Http/Service.php',
+        'Hprose\\InvokeSettings' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/InvokeSettings.php',
+        'Hprose\\Promise' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Promise.php',
+        'Hprose\\Proxy' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Proxy.php',
+        'Hprose\\RawReader' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/RawReader.php',
+        'Hprose\\Reader' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Reader.php',
+        'Hprose\\ReaderRefer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/ReaderRefer.php',
+        'Hprose\\RealReaderRefer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/RealReaderRefer.php',
+        'Hprose\\RealWriterRefer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/RealWriterRefer.php',
+        'Hprose\\ResultMode' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/ResultMode.php',
+        'Hprose\\Service' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Service.php',
+        'Hprose\\Socket\\Client' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Socket/Client.php',
+        'Hprose\\Socket\\DataBuffer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Socket/DataBuffer.php',
+        'Hprose\\Socket\\FullDuplexTransporter' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Socket/FullDuplexTransporter.php',
+        'Hprose\\Socket\\HalfDuplexTransporter' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Socket/HalfDuplexTransporter.php',
+        'Hprose\\Socket\\Server' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Socket/Server.php',
+        'Hprose\\Socket\\Service' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Socket/Service.php',
+        'Hprose\\Socket\\Timer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Socket/Timer.php',
+        'Hprose\\Socket\\Transporter' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Socket/Transporter.php',
+        'Hprose\\Swoole\\Client' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Client.php',
+        'Hprose\\Swoole\\Http\\Client' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Http/Client.php',
+        'Hprose\\Swoole\\Http\\Server' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Http/Server.php',
+        'Hprose\\Swoole\\Http\\Service' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Http/Service.php',
+        'Hprose\\Swoole\\Http\\Transporter' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Http/Transporter.php',
+        'Hprose\\Swoole\\Server' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Server.php',
+        'Hprose\\Swoole\\Socket\\Client' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Socket/Client.php',
+        'Hprose\\Swoole\\Socket\\FullDuplexTransporter' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Socket/FullDuplexTransporter.php',
+        'Hprose\\Swoole\\Socket\\HalfDuplexTransporter' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Socket/HalfDuplexTransporter.php',
+        'Hprose\\Swoole\\Socket\\Server' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Socket/Server.php',
+        'Hprose\\Swoole\\Socket\\Service' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Socket/Service.php',
+        'Hprose\\Swoole\\Socket\\Transporter' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Socket/Transporter.php',
+        'Hprose\\Swoole\\Timer' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/Timer.php',
+        'Hprose\\Swoole\\WebSocket\\Client' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/WebSocket/Client.php',
+        'Hprose\\Swoole\\WebSocket\\Server' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/WebSocket/Server.php',
+        'Hprose\\Swoole\\WebSocket\\Service' => __DIR__ . '/..' . '/hprose/hprose-swoole/src/Hprose/Swoole/WebSocket/Service.php',
+        'Hprose\\Tags' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Tags.php',
+        'Hprose\\TimeoutException' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/TimeoutException.php',
+        'Hprose\\Writer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Writer.php',
+        'Hprose\\WriterRefer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/WriterRefer.php',
+        'Monolog\\ErrorHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ErrorHandler.php',
+        'Monolog\\Formatter\\ChromePHPFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ChromePHPFormatter.php',
+        'Monolog\\Formatter\\ElasticaFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ElasticaFormatter.php',
+        'Monolog\\Formatter\\FlowdockFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/FlowdockFormatter.php',
+        'Monolog\\Formatter\\FluentdFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/FluentdFormatter.php',
+        'Monolog\\Formatter\\FormatterInterface' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/FormatterInterface.php',
+        'Monolog\\Formatter\\GelfMessageFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/GelfMessageFormatter.php',
+        'Monolog\\Formatter\\HtmlFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/HtmlFormatter.php',
+        'Monolog\\Formatter\\JsonFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/JsonFormatter.php',
+        'Monolog\\Formatter\\LineFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/LineFormatter.php',
+        'Monolog\\Formatter\\LogglyFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/LogglyFormatter.php',
+        'Monolog\\Formatter\\LogstashFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/LogstashFormatter.php',
+        'Monolog\\Formatter\\MongoDBFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/MongoDBFormatter.php',
+        'Monolog\\Formatter\\NormalizerFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/NormalizerFormatter.php',
+        'Monolog\\Formatter\\ScalarFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ScalarFormatter.php',
+        'Monolog\\Formatter\\WildfireFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/WildfireFormatter.php',
+        'Monolog\\Handler\\AbstractHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/AbstractHandler.php',
+        'Monolog\\Handler\\AbstractProcessingHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php',
+        'Monolog\\Handler\\AbstractSyslogHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/AbstractSyslogHandler.php',
+        'Monolog\\Handler\\AmqpHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/AmqpHandler.php',
+        'Monolog\\Handler\\BrowserConsoleHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/BrowserConsoleHandler.php',
+        'Monolog\\Handler\\BufferHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/BufferHandler.php',
+        'Monolog\\Handler\\ChromePHPHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/ChromePHPHandler.php',
+        'Monolog\\Handler\\CouchDBHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/CouchDBHandler.php',
+        'Monolog\\Handler\\CubeHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/CubeHandler.php',
+        'Monolog\\Handler\\Curl\\Util' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/Curl/Util.php',
+        'Monolog\\Handler\\DeduplicationHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/DeduplicationHandler.php',
+        'Monolog\\Handler\\DoctrineCouchDBHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/DoctrineCouchDBHandler.php',
+        'Monolog\\Handler\\DynamoDbHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/DynamoDbHandler.php',
+        'Monolog\\Handler\\ElasticSearchHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/ElasticSearchHandler.php',
+        'Monolog\\Handler\\ErrorLogHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/ErrorLogHandler.php',
+        'Monolog\\Handler\\FilterHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/FilterHandler.php',
+        'Monolog\\Handler\\FingersCrossedHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/FingersCrossedHandler.php',
+        'Monolog\\Handler\\FingersCrossed\\ActivationStrategyInterface' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/FingersCrossed/ActivationStrategyInterface.php',
+        'Monolog\\Handler\\FingersCrossed\\ChannelLevelActivationStrategy' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/FingersCrossed/ChannelLevelActivationStrategy.php',
+        'Monolog\\Handler\\FingersCrossed\\ErrorLevelActivationStrategy' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/FingersCrossed/ErrorLevelActivationStrategy.php',
+        'Monolog\\Handler\\FirePHPHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/FirePHPHandler.php',
+        'Monolog\\Handler\\FleepHookHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/FleepHookHandler.php',
+        'Monolog\\Handler\\FlowdockHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/FlowdockHandler.php',
+        'Monolog\\Handler\\GelfHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/GelfHandler.php',
+        'Monolog\\Handler\\GroupHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/GroupHandler.php',
+        'Monolog\\Handler\\HandlerInterface' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/HandlerInterface.php',
+        'Monolog\\Handler\\HandlerWrapper' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/HandlerWrapper.php',
+        'Monolog\\Handler\\HipChatHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/HipChatHandler.php',
+        'Monolog\\Handler\\IFTTTHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/IFTTTHandler.php',
+        'Monolog\\Handler\\LogEntriesHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/LogEntriesHandler.php',
+        'Monolog\\Handler\\LogglyHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/LogglyHandler.php',
+        'Monolog\\Handler\\MailHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/MailHandler.php',
+        'Monolog\\Handler\\MandrillHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/MandrillHandler.php',
+        'Monolog\\Handler\\MissingExtensionException' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/MissingExtensionException.php',
+        'Monolog\\Handler\\MongoDBHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/MongoDBHandler.php',
+        'Monolog\\Handler\\NativeMailerHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/NativeMailerHandler.php',
+        'Monolog\\Handler\\NewRelicHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/NewRelicHandler.php',
+        'Monolog\\Handler\\NullHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/NullHandler.php',
+        'Monolog\\Handler\\PHPConsoleHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/PHPConsoleHandler.php',
+        'Monolog\\Handler\\PsrHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/PsrHandler.php',
+        'Monolog\\Handler\\PushoverHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/PushoverHandler.php',
+        'Monolog\\Handler\\RavenHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/RavenHandler.php',
+        'Monolog\\Handler\\RedisHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/RedisHandler.php',
+        'Monolog\\Handler\\RollbarHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/RollbarHandler.php',
+        'Monolog\\Handler\\RotatingFileHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/RotatingFileHandler.php',
+        'Monolog\\Handler\\SamplingHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SamplingHandler.php',
+        'Monolog\\Handler\\SlackHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SlackHandler.php',
+        'Monolog\\Handler\\SlackWebhookHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SlackWebhookHandler.php',
+        'Monolog\\Handler\\Slack\\SlackRecord' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/Slack/SlackRecord.php',
+        'Monolog\\Handler\\SlackbotHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SlackbotHandler.php',
+        'Monolog\\Handler\\SocketHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SocketHandler.php',
+        'Monolog\\Handler\\StreamHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/StreamHandler.php',
+        'Monolog\\Handler\\SwiftMailerHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SwiftMailerHandler.php',
+        'Monolog\\Handler\\SyslogHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SyslogHandler.php',
+        'Monolog\\Handler\\SyslogUdpHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SyslogUdpHandler.php',
+        'Monolog\\Handler\\SyslogUdp\\UdpSocket' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SyslogUdp/UdpSocket.php',
+        'Monolog\\Handler\\TestHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/TestHandler.php',
+        'Monolog\\Handler\\WhatFailureGroupHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/WhatFailureGroupHandler.php',
+        'Monolog\\Handler\\ZendMonitorHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/ZendMonitorHandler.php',
+        'Monolog\\Logger' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Logger.php',
+        'Monolog\\Processor\\GitProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/GitProcessor.php',
+        'Monolog\\Processor\\IntrospectionProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/IntrospectionProcessor.php',
+        'Monolog\\Processor\\MemoryPeakUsageProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/MemoryPeakUsageProcessor.php',
+        'Monolog\\Processor\\MemoryProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/MemoryProcessor.php',
+        'Monolog\\Processor\\MemoryUsageProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/MemoryUsageProcessor.php',
+        'Monolog\\Processor\\MercurialProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/MercurialProcessor.php',
+        'Monolog\\Processor\\ProcessIdProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/ProcessIdProcessor.php',
+        'Monolog\\Processor\\PsrLogMessageProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/PsrLogMessageProcessor.php',
+        'Monolog\\Processor\\TagProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/TagProcessor.php',
+        'Monolog\\Processor\\UidProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/UidProcessor.php',
+        'Monolog\\Processor\\WebProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/WebProcessor.php',
+        'Monolog\\Registry' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Registry.php',
+        'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
+        'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
+        'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/Psr/Log/LogLevel.php',
+        'Psr\\Log\\LoggerAwareInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareInterface.php',
+        'Psr\\Log\\LoggerAwareTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareTrait.php',
+        'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
+        'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
+        'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
+        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'ultraman\\Cache\\Redis' => __DIR__ . '/../..' . '/Cache/Redis.php',
         'ultraman\\Common\\CommonFun' => __DIR__ . '/../..' . '/Common/CommonFun.php',
         'ultraman\\Common\\DataValidator' => __DIR__ . '/../..' . '/Common/DataValidator.php',
@@ -67,9 +254,9 @@ class ComposerStaticInit6b885b57e3ec7733b7d2cba98ddc454e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6b885b57e3ec7733b7d2cba98ddc454e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6b885b57e3ec7733b7d2cba98ddc454e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit6b885b57e3ec7733b7d2cba98ddc454e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite3d9c778ced21fc26778dc294ec261ff::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite3d9c778ced21fc26778dc294ec261ff::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite3d9c778ced21fc26778dc294ec261ff::$classMap;
 
         }, null, ClassLoader::class);
     }

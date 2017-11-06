@@ -12,4 +12,8 @@ return array(
     'ultraman\\Db\\' => array($baseDir . '/Db'),
     'ultraman\\Common\\' => array($baseDir . '/Common'),
     'ultraman\\Cache\\' => array($baseDir . '/Cache'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'Hprose\\Swoole\\' => array($vendorDir . '/hprose/hprose-swoole/src/Hprose/Swoole'),
+    'Hprose\\' => array($vendorDir . '/hprose/hprose/src/Hprose'),
 );
