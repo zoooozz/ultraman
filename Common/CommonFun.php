@@ -36,6 +36,21 @@ class CommonFun
         return $item;
     }
 
+    public static function getByfield($keys,$params)
+    {
+        if(count($keys) == 0 || count($params) == 0 ){
+            return $params;
+        }
+
+        $item = [];
+        foreach ($keys as $key => $value) {
+            $item[$value] = isset($params[$value])?$params[$value]:'';
+        }
+        return $item;
+    }
+
+
+
     public static function Types($params,$types)
     {
         switch ($types) {

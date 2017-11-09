@@ -37,7 +37,7 @@ class Redis
      * @param []
      */
 
-    public static function getRedisInstance()
+    public static function Instance()
     {
         if (null === static::$_instance) {
             $redis =  new \Redis;
