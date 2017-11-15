@@ -104,9 +104,6 @@ class Model
         }
         $condition = 'WHERE ';
         foreach ($params as $key => $value) {
-            if($value == ''){
-                continue;
-            }
             $condition .= $key . $f . "'" . $value . "'" . ' and ';
         }
         $condition = substr($condition, 0, -4);

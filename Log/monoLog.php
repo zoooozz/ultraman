@@ -49,7 +49,7 @@ class monoLog
 		$item = [];
         $item['query'] = $params;
         
-        $config = DI::get('main');
+        $config = DI::get('log');
      	if(count($config) == 0 || $config == ""){
      		return true;
      	}
@@ -58,11 +58,10 @@ class monoLog
         static::$config = $config;
         static::$data = $logs;
         static::$level = strtoupper($level);
-
-        $source_name = $config['common']['service.name']?: "default";
-        $path = $config['path']['log']?: "/tmp";
+        $source_name = $config['name']?: "default";
+        $path = $config['path']?: "/tmp";
         $file = date("Ymd");
-        $base_path = $path."/".$source_name.'/'.$file.'.log';    	
+        $base_path = $path."/".$source_name.'/'.$file.'.log';   
         $log = new Logger($source_name);
         $log->pushHandler(new StreamHandler($base_path));
         call_user_func_array(array(__NAMESPACE__ .'\monoLog', static::$level), array($log));

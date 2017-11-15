@@ -23,7 +23,7 @@ class App
      */
 
     public function __construct($config = [])
-    {
+    {   
         require dirname(dirname(__FILE__)."/../").'/vendor/autoload.php';
         if(count($config) == 0){
             return true;

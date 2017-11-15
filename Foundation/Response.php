@@ -25,19 +25,4 @@ class Response
         return  json_encode($params,JSON_UNESCAPED_UNICODE);
 	}
 
-	public static function error($e)
-	{
-		$params['msg'] = $e->getMessage();
-		$params['code'] = $e->getCode();;
-        return  json_encode($params,JSON_UNESCAPED_UNICODE);
-	}
-
-	public static function success($params,$code = 200)
-	{
-		$item['code'] = $code;
-		$item['data'] = $params;
-		$item['msg'] = "请求成功";
-        return  json_encode($item,JSON_UNESCAPED_UNICODE);
-	}
-
 }

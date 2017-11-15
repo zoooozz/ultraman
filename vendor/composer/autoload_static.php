@@ -17,6 +17,7 @@ class ComposerStaticInite3d9c778ced21fc26778dc294ec261ff
             'ultraman\\Log\\' => 13,
             'ultraman\\Http\\' => 14,
             'ultraman\\Foundation\\' => 20,
+            'ultraman\\Exception\\' => 19,
             'ultraman\\Db\\' => 12,
             'ultraman\\Common\\' => 16,
             'ultraman\\Cache\\' => 15,
@@ -48,6 +49,10 @@ class ComposerStaticInite3d9c778ced21fc26778dc294ec261ff
         'ultraman\\Foundation\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Foundation',
+        ),
+        'ultraman\\Exception\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Exception',
         ),
         'ultraman\\Db\\' => 
         array (
@@ -238,10 +243,13 @@ class ComposerStaticInite3d9c778ced21fc26778dc294ec261ff
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'ultraman\\Cache\\Redis' => __DIR__ . '/../..' . '/Cache/Redis.php',
+        'ultraman\\Common\\BaseException' => __DIR__ . '/../..' . '/Common/APIException.php',
         'ultraman\\Common\\CommonFun' => __DIR__ . '/../..' . '/Common/CommonFun.php',
         'ultraman\\Common\\DataValidator' => __DIR__ . '/../..' . '/Common/DataValidator.php',
         'ultraman\\Db\\DbTransaction' => __DIR__ . '/../..' . '/Db/DbTransaction.php',
         'ultraman\\Db\\Model' => __DIR__ . '/../..' . '/Db/Model.php',
+        'ultraman\\Exception\\BaseException' => __DIR__ . '/../..' . '/Exception/BaseException.php',
+        'ultraman\\Exception\\Exception' => __DIR__ . '/../..' . '/Exception/Exception.php',
         'ultraman\\Foundation\\Container' => __DIR__ . '/../..' . '/Foundation/Container.php',
         'ultraman\\Foundation\\Di' => __DIR__ . '/../..' . '/Foundation/DI.php',
         'ultraman\\Foundation\\Ecode' => __DIR__ . '/../..' . '/Foundation/Ecode.php',

@@ -36,20 +36,9 @@ class CommonFun
         return $item;
     }
 
-    public static function getByfield($keys,$params)
-    {
-        if(count($keys) == 0 || count($params) == 0 ){
-            return $params;
-        }
-
-        $item = [];
-        foreach ($keys as $key => $value) {
-            $item[$value] = isset($params[$value])?$params[$value]:'';
-        }
-        return $item;
-    }
-
-
+    /**
+     *  类型转换
+     */
 
     public static function Types($params,$types)
     {
@@ -79,6 +68,10 @@ class CommonFun
         return $items;
     }
 
+    /**
+     *  重新封装分割
+     */
+
     public static function explode_keys($key,$params)
     {
         $items = [];
@@ -94,6 +87,10 @@ class CommonFun
         return $items;
     }
 
+    /**
+     *  为参数或字段加引号 或者特殊符号
+     */
+
     public static function Quotes($keys,$params)
     {
         if($keys == ""){
@@ -107,4 +104,14 @@ class CommonFun
         $str =  substr($str, 0, -1);
         return $str;
     }
+
+    /**
+     *  获取毫秒级时间戳
+     */
+
+    public static function microtime()
+    {
+        list($usec, $sec) = explode(' ', microtime());
+        return ((float)$usec + (float)$sec);
+    } 
 }

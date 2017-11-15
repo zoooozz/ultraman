@@ -9,6 +9,7 @@ return array(
     'ultraman\\Log\\' => array($baseDir . '/Log'),
     'ultraman\\Http\\' => array($baseDir . '/Http'),
     'ultraman\\Foundation\\' => array($baseDir . '/Foundation'),
+    'ultraman\\Exception\\' => array($baseDir . '/Exception'),
     'ultraman\\Db\\' => array($baseDir . '/Db'),
     'ultraman\\Common\\' => array($baseDir . '/Common'),
     'ultraman\\Cache\\' => array($baseDir . '/Cache'),
