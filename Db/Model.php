@@ -49,7 +49,7 @@ class Model
     {
         $db = DI::get('database');
         if($db == ""){
-           	return Response::_end(['msg'=>"db配置为空"],Ecode::SQL_LINK_ERROR);
+            throw new \Exception("数据库链接失败",Ecode::SQL_ERROR);
         }
         $config = $db[$this->_database];
 
@@ -63,7 +63,7 @@ class Model
             $this->_db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             return $this;
         } catch (\PDOException $e) {
-           	return Response::_end(['msg'=>"数据库链接失败"],Ecode::SQL_ERROR);
+            throw new \Exception("数据库链接失败",Ecode::SQL_LINK_ERROR);
         }
     }
     

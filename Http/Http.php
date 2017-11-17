@@ -384,7 +384,7 @@ class Http
     protected function run($ch, $retry = 0)
     {
         if (!$this->isUrl($this->url)) {
-            return Response::_end(["msg"=>"接口配置错误"],Ecode::API_LINK_ERROR);
+            throw new \Exception("接口配置错误",Ecode::API_LINK_ERROR);
         }
         curl_setopt($ch, CURLOPT_URL, $this->url);
         if ($this->withHeader) {

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite3d9c778ced21fc26778dc294ec261ff
+class ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1
 {
     public static $files = array (
         'd7f4f7522f962c095f835c50e6136087' => __DIR__ . '/..' . '/hprose/hprose/src/init.php',
@@ -14,6 +14,7 @@ class ComposerStaticInite3d9c778ced21fc26778dc294ec261ff
     public static $prefixLengthsPsr4 = array (
         'u' => 
         array (
+            'ultraman\\Task\\' => 14,
             'ultraman\\Log\\' => 13,
             'ultraman\\Http\\' => 14,
             'ultraman\\Foundation\\' => 20,
@@ -38,6 +39,10 @@ class ComposerStaticInite3d9c778ced21fc26778dc294ec261ff
     );
 
     public static $prefixDirsPsr4 = array (
+        'ultraman\\Task\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Task',
+        ),
         'ultraman\\Log\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Log',
@@ -243,7 +248,6 @@ class ComposerStaticInite3d9c778ced21fc26778dc294ec261ff
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'ultraman\\Cache\\Redis' => __DIR__ . '/../..' . '/Cache/Redis.php',
-        'ultraman\\Common\\BaseException' => __DIR__ . '/../..' . '/Common/APIException.php',
         'ultraman\\Common\\CommonFun' => __DIR__ . '/../..' . '/Common/CommonFun.php',
         'ultraman\\Common\\DataValidator' => __DIR__ . '/../..' . '/Common/DataValidator.php',
         'ultraman\\Db\\DbTransaction' => __DIR__ . '/../..' . '/Db/DbTransaction.php',
@@ -251,20 +255,21 @@ class ComposerStaticInite3d9c778ced21fc26778dc294ec261ff
         'ultraman\\Exception\\BaseException' => __DIR__ . '/../..' . '/Exception/BaseException.php',
         'ultraman\\Exception\\Exception' => __DIR__ . '/../..' . '/Exception/Exception.php',
         'ultraman\\Foundation\\Container' => __DIR__ . '/../..' . '/Foundation/Container.php',
-        'ultraman\\Foundation\\Di' => __DIR__ . '/../..' . '/Foundation/DI.php',
+        'ultraman\\Foundation\\DI' => __DIR__ . '/../..' . '/Foundation/DI.php',
         'ultraman\\Foundation\\Ecode' => __DIR__ . '/../..' . '/Foundation/Ecode.php',
         'ultraman\\Foundation\\Enumeration' => __DIR__ . '/../..' . '/Foundation/Enumeration.php',
         'ultraman\\Foundation\\Response' => __DIR__ . '/../..' . '/Foundation/Response.php',
         'ultraman\\Http\\Http' => __DIR__ . '/../..' . '/Http/Http.php',
+        'ultraman\\Http\\SwooleHttpServer' => __DIR__ . '/../..' . '/Http/HttpServer.php',
         'ultraman\\Log\\monoLog' => __DIR__ . '/../..' . '/Log/monoLog.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite3d9c778ced21fc26778dc294ec261ff::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite3d9c778ced21fc26778dc294ec261ff::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite3d9c778ced21fc26778dc294ec261ff::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1::$classMap;
 
         }, null, ClassLoader::class);
     }

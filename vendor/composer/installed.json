@@ -142,17 +142,17 @@
     },
     {
         "name": "hprose/hprose",
-        "version": "v2.0.31",
-        "version_normalized": "2.0.31.0",
+        "version": "v2.0.32",
+        "version_normalized": "2.0.32.0",
         "source": {
             "type": "git",
             "url": "https://github.com/hprose/hprose-php.git",
-            "reference": "1c1ef5651eb0983b9f572841dc4c60a7ee3a5d71"
+            "reference": "bc5ecaabd59f9c8b41b4172cf192efa610934088"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/hprose/hprose-php/zipball/1c1ef5651eb0983b9f572841dc4c60a7ee3a5d71",
-            "reference": "1c1ef5651eb0983b9f572841dc4c60a7ee3a5d71",
+            "url": "https://api.github.com/repos/hprose/hprose-php/zipball/bc5ecaabd59f9c8b41b4172cf192efa610934088",
+            "reference": "bc5ecaabd59f9c8b41b4172cf192efa610934088",
             "shasum": "",
             "mirrors": [
                 {
@@ -170,7 +170,7 @@
         "suggest": {
             "ext-hprose": "Faster serialize and unserialize hprose extension."
         },
-        "time": "2017-08-20T03:53:19+00:00",
+        "time": "2017-11-13T06:00:54+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

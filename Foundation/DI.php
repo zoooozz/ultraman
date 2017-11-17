@@ -11,7 +11,7 @@ namespace ultraman\Foundation;
 
 use ultraman\Foundation\Container;
 
-class Di
+class DI
 {   
     /**
      * @var instance 容器对象

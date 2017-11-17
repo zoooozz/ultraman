@@ -18,7 +18,9 @@
             "ultraman\\Common\\" : "Common/",
             "ultraman\\Http\\" : "Http/",
             "ultraman\\Log\\" : "Log/",
-            "ultraman\\Exception\\" : "Exception/"
+            "ultraman\\Exception\\" : "Exception/",
+            "ultraman\\Task\\" : "Task/"
+            
         },
         "files": ["App.php"]  
     },
