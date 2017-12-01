@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1
+class ComposerStaticInitd67feed0f16b3434232cf7c67f637120
 {
     public static $files = array (
         'd7f4f7522f962c095f835c50e6136087' => __DIR__ . '/..' . '/hprose/hprose/src/init.php',
@@ -14,7 +14,7 @@ class ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1
     public static $prefixLengthsPsr4 = array (
         'u' => 
         array (
-            'ultraman\\Task\\' => 14,
+            'ultraman\\install\\' => 17,
             'ultraman\\Log\\' => 13,
             'ultraman\\Http\\' => 14,
             'ultraman\\Foundation\\' => 20,
@@ -22,6 +22,10 @@ class ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1
             'ultraman\\Db\\' => 12,
             'ultraman\\Common\\' => 16,
             'ultraman\\Cache\\' => 15,
+        ),
+        'S' => 
+        array (
+            'Seld\\CliPrompt\\' => 15,
         ),
         'P' => 
         array (
@@ -31,6 +35,10 @@ class ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1
         array (
             'Monolog\\' => 8,
         ),
+        'L' => 
+        array (
+            'League\\CLImate\\' => 15,
+        ),
         'H' => 
         array (
             'Hprose\\Swoole\\' => 14,
@@ -39,9 +47,9 @@ class ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1
     );
 
     public static $prefixDirsPsr4 = array (
-        'ultraman\\Task\\' => 
+        'ultraman\\install\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Task',
+            0 => __DIR__ . '/../..' . '/install',
         ),
         'ultraman\\Log\\' => 
         array (
@@ -71,6 +79,10 @@ class ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1
         array (
             0 => __DIR__ . '/../..' . '/Cache',
         ),
+        'Seld\\CliPrompt\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/seld/cli-prompt/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -78,6 +90,10 @@ class ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'League\\CLImate\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/climate/src',
         ),
         'Hprose\\Swoole\\' => 
         array (
@@ -149,6 +165,86 @@ class ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1
         'Hprose\\TimeoutException' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/TimeoutException.php',
         'Hprose\\Writer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/Writer.php',
         'Hprose\\WriterRefer' => __DIR__ . '/..' . '/hprose/hprose/src/Hprose/WriterRefer.php',
+        'League\\CLImate\\Argument\\Argument' => __DIR__ . '/..' . '/league/climate/src/Argument/Argument.php',
+        'League\\CLImate\\Argument\\Filter' => __DIR__ . '/..' . '/league/climate/src/Argument/Filter.php',
+        'League\\CLImate\\Argument\\Manager' => __DIR__ . '/..' . '/league/climate/src/Argument/Manager.php',
+        'League\\CLImate\\Argument\\Parser' => __DIR__ . '/..' . '/league/climate/src/Argument/Parser.php',
+        'League\\CLImate\\Argument\\Summary' => __DIR__ . '/..' . '/league/climate/src/Argument/Summary.php',
+        'League\\CLImate\\CLImate' => __DIR__ . '/..' . '/league/climate/src/CLImate.php',
+        'League\\CLImate\\Decorator\\Component\\BackgroundColor' => __DIR__ . '/..' . '/league/climate/src/Decorator/Component/BackgroundColor.php',
+        'League\\CLImate\\Decorator\\Component\\BaseDecorator' => __DIR__ . '/..' . '/league/climate/src/Decorator/Component/BaseDecorator.php',
+        'League\\CLImate\\Decorator\\Component\\Color' => __DIR__ . '/..' . '/league/climate/src/Decorator/Component/Color.php',
+        'League\\CLImate\\Decorator\\Component\\Command' => __DIR__ . '/..' . '/league/climate/src/Decorator/Component/Command.php',
+        'League\\CLImate\\Decorator\\Component\\DecoratorInterface' => __DIR__ . '/..' . '/league/climate/src/Decorator/Component/DecoratorInterface.php',
+        'League\\CLImate\\Decorator\\Component\\Format' => __DIR__ . '/..' . '/league/climate/src/Decorator/Component/Format.php',
+        'League\\CLImate\\Decorator\\Parser\\Ansi' => __DIR__ . '/..' . '/league/climate/src/Decorator/Parser/Ansi.php',
+        'League\\CLImate\\Decorator\\Parser\\NonAnsi' => __DIR__ . '/..' . '/league/climate/src/Decorator/Parser/NonAnsi.php',
+        'League\\CLImate\\Decorator\\Parser\\Parser' => __DIR__ . '/..' . '/league/climate/src/Decorator/Parser/Parser.php',
+        'League\\CLImate\\Decorator\\Parser\\ParserFactory' => __DIR__ . '/..' . '/league/climate/src/Decorator/Parser/ParserFactory.php',
+        'League\\CLImate\\Decorator\\Parser\\ParserImporter' => __DIR__ . '/..' . '/league/climate/src/Decorator/Parser/ParserImporter.php',
+        'League\\CLImate\\Decorator\\Style' => __DIR__ . '/..' . '/league/climate/src/Decorator/Style.php',
+        'League\\CLImate\\Decorator\\Tags' => __DIR__ . '/..' . '/league/climate/src/Decorator/Tags.php',
+        'League\\CLImate\\Settings\\Art' => __DIR__ . '/..' . '/league/climate/src/Settings/Art.php',
+        'League\\CLImate\\Settings\\Manager' => __DIR__ . '/..' . '/league/climate/src/Settings/Manager.php',
+        'League\\CLImate\\Settings\\SettingsImporter' => __DIR__ . '/..' . '/league/climate/src/Settings/SettingsImporter.php',
+        'League\\CLImate\\Settings\\SettingsInterface' => __DIR__ . '/..' . '/league/climate/src/Settings/SettingsInterface.php',
+        'League\\CLImate\\TerminalObject\\Basic\\BasicTerminalObject' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/BasicTerminalObject.php',
+        'League\\CLImate\\TerminalObject\\Basic\\BasicTerminalObjectInterface' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/BasicTerminalObjectInterface.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Border' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Border.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Br' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Br.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Clear' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Clear.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Columns' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Columns.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Draw' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Draw.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Dump' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Dump.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Flank' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Flank.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Inline' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Inline.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Json' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Json.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Out' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Out.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Repeatable' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Repeatable.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Tab' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Tab.php',
+        'League\\CLImate\\TerminalObject\\Basic\\Table' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Basic/Table.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Animation' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Animation.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Animation\\Keyframe' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Animation/Keyframe.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Checkbox\\Checkbox' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Checkbox/Checkbox.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Checkbox\\CheckboxGroup' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Checkbox/CheckboxGroup.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Checkbox\\RadioGroup' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Checkbox/RadioGroup.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Checkboxes' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Checkboxes.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Confirm' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Confirm.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\DynamicTerminalObject' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/DynamicTerminalObject.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\DynamicTerminalObjectInterface' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/DynamicTerminalObjectInterface.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Input' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Input.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\InputAbstract' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/InputAbstract.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Padding' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Padding.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Password' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Password.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Progress' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Progress.php',
+        'League\\CLImate\\TerminalObject\\Dynamic\\Radio' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Dynamic/Radio.php',
+        'League\\CLImate\\TerminalObject\\Helper\\Art' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Helper/Art.php',
+        'League\\CLImate\\TerminalObject\\Helper\\Sleeper' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Helper/Sleeper.php',
+        'League\\CLImate\\TerminalObject\\Helper\\SleeperInterface' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Helper/SleeperInterface.php',
+        'League\\CLImate\\TerminalObject\\Helper\\StringLength' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Helper/StringLength.php',
+        'League\\CLImate\\TerminalObject\\Router\\BaseRouter' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Router/BaseRouter.php',
+        'League\\CLImate\\TerminalObject\\Router\\BasicRouter' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Router/BasicRouter.php',
+        'League\\CLImate\\TerminalObject\\Router\\DynamicRouter' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Router/DynamicRouter.php',
+        'League\\CLImate\\TerminalObject\\Router\\ExtensionCollection' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Router/ExtensionCollection.php',
+        'League\\CLImate\\TerminalObject\\Router\\Router' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Router/Router.php',
+        'League\\CLImate\\TerminalObject\\Router\\RouterInterface' => __DIR__ . '/..' . '/league/climate/src/TerminalObject/Router/RouterInterface.php',
+        'League\\CLImate\\Util\\Cursor' => __DIR__ . '/..' . '/league/climate/src/Util/Cursor.php',
+        'League\\CLImate\\Util\\Helper' => __DIR__ . '/..' . '/league/climate/src/Util/Helper.php',
+        'League\\CLImate\\Util\\Output' => __DIR__ . '/..' . '/league/climate/src/Util/Output.php',
+        'League\\CLImate\\Util\\OutputImporter' => __DIR__ . '/..' . '/league/climate/src/Util/OutputImporter.php',
+        'League\\CLImate\\Util\\Reader\\ReaderInterface' => __DIR__ . '/..' . '/league/climate/src/Util/Reader/ReaderInterface.php',
+        'League\\CLImate\\Util\\Reader\\Stdin' => __DIR__ . '/..' . '/league/climate/src/Util/Reader/Stdin.php',
+        'League\\CLImate\\Util\\System\\Linux' => __DIR__ . '/..' . '/league/climate/src/Util/System/Linux.php',
+        'League\\CLImate\\Util\\System\\System' => __DIR__ . '/..' . '/league/climate/src/Util/System/System.php',
+        'League\\CLImate\\Util\\System\\SystemFactory' => __DIR__ . '/..' . '/league/climate/src/Util/System/SystemFactory.php',
+        'League\\CLImate\\Util\\System\\Windows' => __DIR__ . '/..' . '/league/climate/src/Util/System/Windows.php',
+        'League\\CLImate\\Util\\UtilFactory' => __DIR__ . '/..' . '/league/climate/src/Util/UtilFactory.php',
+        'League\\CLImate\\Util\\UtilImporter' => __DIR__ . '/..' . '/league/climate/src/Util/UtilImporter.php',
+        'League\\CLImate\\Util\\Writer\\Buffer' => __DIR__ . '/..' . '/league/climate/src/Util/Writer/Buffer.php',
+        'League\\CLImate\\Util\\Writer\\File' => __DIR__ . '/..' . '/league/climate/src/Util/Writer/File.php',
+        'League\\CLImate\\Util\\Writer\\StdErr' => __DIR__ . '/..' . '/league/climate/src/Util/Writer/StdErr.php',
+        'League\\CLImate\\Util\\Writer\\StdOut' => __DIR__ . '/..' . '/league/climate/src/Util/Writer/StdOut.php',
+        'League\\CLImate\\Util\\Writer\\WriterInterface' => __DIR__ . '/..' . '/league/climate/src/Util/Writer/WriterInterface.php',
         'Monolog\\ErrorHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ErrorHandler.php',
         'Monolog\\Formatter\\ChromePHPFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ChromePHPFormatter.php',
         'Monolog\\Formatter\\ElasticaFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ElasticaFormatter.php',
@@ -247,6 +343,7 @@ class ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Seld\\CliPrompt\\CliPrompt' => __DIR__ . '/..' . '/seld/cli-prompt/src/CliPrompt.php',
         'ultraman\\Cache\\Redis' => __DIR__ . '/../..' . '/Cache/Redis.php',
         'ultraman\\Common\\CommonFun' => __DIR__ . '/../..' . '/Common/CommonFun.php',
         'ultraman\\Common\\DataValidator' => __DIR__ . '/../..' . '/Common/DataValidator.php',
@@ -262,14 +359,15 @@ class ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1
         'ultraman\\Http\\Http' => __DIR__ . '/../..' . '/Http/Http.php',
         'ultraman\\Http\\SwooleHttpServer' => __DIR__ . '/../..' . '/Http/HttpServer.php',
         'ultraman\\Log\\monoLog' => __DIR__ . '/../..' . '/Log/monoLog.php',
+        'ultraman\\install\\yaf\\Installer' => __DIR__ . '/../..' . '/install/yaf/Installer.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit0b848f50dea48182ffec9fae05eaceb1::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd67feed0f16b3434232cf7c67f637120::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd67feed0f16b3434232cf7c67f637120::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitd67feed0f16b3434232cf7c67f637120::$classMap;
 
         }, null, ClassLoader::class);
     }

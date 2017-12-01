@@ -6,7 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'ultraman\\Task\\' => array($baseDir . '/Task'),
+    'ultraman\\install\\' => array($baseDir . '/install'),
     'ultraman\\Log\\' => array($baseDir . '/Log'),
     'ultraman\\Http\\' => array($baseDir . '/Http'),
     'ultraman\\Foundation\\' => array($baseDir . '/Foundation'),
@@ -14,8 +14,10 @@ return array(
     'ultraman\\Db\\' => array($baseDir . '/Db'),
     'ultraman\\Common\\' => array($baseDir . '/Common'),
     'ultraman\\Cache\\' => array($baseDir . '/Cache'),
+    'Seld\\CliPrompt\\' => array($vendorDir . '/seld/cli-prompt/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'League\\CLImate\\' => array($vendorDir . '/league/climate/src'),
     'Hprose\\Swoole\\' => array($vendorDir . '/hprose/hprose-swoole/src/Hprose/Swoole'),
     'Hprose\\' => array($vendorDir . '/hprose/hprose/src/Hprose'),
 );

@@ -7,7 +7,8 @@
     "require": {
         "php": ">=7.1.0",
         "monolog/monolog": ">=1.23.0",
-        "hprose/hprose-swoole": ">=2.0.0"
+        "hprose/hprose-swoole": ">=2.0.0",
+        "league/climate": "~3.2"
     },
 
     "autoload": {
@@ -19,7 +20,7 @@
             "ultraman\\Http\\" : "Http/",
             "ultraman\\Log\\" : "Log/",
             "ultraman\\Exception\\" : "Exception/",
-            "ultraman\\Task\\" : "Task/"
+            "ultraman\\install\\" : "install/"
             
         },
         "files": ["App.php"]  
