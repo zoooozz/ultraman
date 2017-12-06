@@ -29,12 +29,18 @@ class HttpYafServer
 		$http = $app->connent();
         \Yaf_Registry::set('swoole_http', $http);
 		$http->on('WorkerStart' , array( $this , 'onWorkerStart'));
-		$http->on('request', function ($request, $response) {           
+		$http->on('request', function ($request, $response) {
+
+            if ($request->server['request_uri'] == '/favicon.ico') {
+                $response->end();
+                return;
+            }
+
 			$this->initRequestParam($request);
             ob_start();
           	try {
 				$yaf_request = new \Yaf_Request_Http($request->server['request_uri']);
-			    $this->application->getDispatcher()->dispatch($yaf_request);		   
+			    $this->application->getDispatcher()->dispatch($yaf_request);
 			} catch ( \Exception $e ) {
 				$params = [
 		        	'code'=>$e->getCode(),
@@ -46,8 +52,8 @@ class HttpYafServer
             ob_end_clean();
             $response->header('Content-Type', 'text/html; charset=utf-8');
             $response->end($result);
-		});
-
+		});        
+        $http->on('Start', array($this, 'onStart'));
 		$http->on('task', array($this, 'onTask'));
         $http->on('finish', array($this, 'onFinish'));
 		$http->start();
@@ -56,11 +62,28 @@ class HttpYafServer
 	public function onWorkerStart() 
 	{
 		$config = APPLICATION_PATH.'/conf/main.ini';
-		$this->application = new \Yaf_Application($config);
-		ob_start();
-		$this->application->bootstrap()->run();
-		ob_end_clean();
+        try {
+            $this->application = new \Yaf_Application($config);
+            ob_start();
+            $this->application->bootstrap()->run();
+            ob_end_clean();
+        }catch (\Exception $e) {
+            $params = [
+                'code'=>$e->getCode(),
+                'msg'=>$e->getMessage()
+            ];
+            echo  json_encode($params,JSON_UNESCAPED_UNICODE);
+        }
+		
 	}
+
+    public function onStart( $serv ) {
+        $config = @parse_ini_file(APPLICATION_PATH."/conf/main.ini",true);
+        $name = $config['common']['application.service_name'];
+        echo $name."服务启动\n";
+        @cli_set_process_title($name);
+    }
+
 
 	private function initRequestParam(\swoole_http_request $request)
     {

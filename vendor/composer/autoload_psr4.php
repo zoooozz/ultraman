@@ -6,7 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'ultraman\\install\\' => array($baseDir . '/install'),
+    'ultraman\\Yaf\\' => array($baseDir . '/Yaf'),
+    'ultraman\\Tcp\\' => array($baseDir . '/Tcp'),
     'ultraman\\Log\\' => array($baseDir . '/Log'),
     'ultraman\\Http\\' => array($baseDir . '/Http'),
     'ultraman\\Foundation\\' => array($baseDir . '/Foundation'),

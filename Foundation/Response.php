@@ -25,4 +25,11 @@ class Response
         return  json_encode($params,JSON_UNESCAPED_UNICODE);
 	}
 
+	public static function error($e)
+	{
+		$params['msg'] = $e->getMessage();
+		$params['code'] = $e->getCode();;
+        return  json_encode($params,JSON_UNESCAPED_UNICODE);
+	}
+
 }

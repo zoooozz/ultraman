@@ -257,7 +257,12 @@ return array(
     'ultraman\\Foundation\\Enumeration' => $baseDir . '/Foundation/Enumeration.php',
     'ultraman\\Foundation\\Response' => $baseDir . '/Foundation/Response.php',
     'ultraman\\Http\\Http' => $baseDir . '/Http/Http.php',
+    'ultraman\\Http\\HttpYafServer' => $baseDir . '/Http/HttpYafServer.php',
     'ultraman\\Http\\SwooleHttpServer' => $baseDir . '/Http/HttpServer.php',
     'ultraman\\Log\\monoLog' => $baseDir . '/Log/monoLog.php',
-    'ultraman\\install\\yaf\\Installer' => $baseDir . '/install/yaf/Installer.php',
+    'ultraman\\Tcp\\SwooleServer' => $baseDir . '/Tcp/SwooleServer.php',
+    'ultraman\\Yaf\\BaseController' => $baseDir . '/Yaf/Base.php',
+    'ultraman\\Yaf\\Bootstrap' => $baseDir . '/Yaf/Bootstrap.php',
+    'ultraman\\Yaf\\Installer' => $baseDir . '/Yaf/Install.php',
+    'ultraman\\Yaf\\plugins\\CommonPlugin' => $baseDir . '/Yaf/plugins/CommonPlugin.php',
 );

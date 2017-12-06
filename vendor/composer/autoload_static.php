@@ -14,7 +14,8 @@ class ComposerStaticInitd67feed0f16b3434232cf7c67f637120
     public static $prefixLengthsPsr4 = array (
         'u' => 
         array (
-            'ultraman\\install\\' => 17,
+            'ultraman\\Yaf\\' => 13,
+            'ultraman\\Tcp\\' => 13,
             'ultraman\\Log\\' => 13,
             'ultraman\\Http\\' => 14,
             'ultraman\\Foundation\\' => 20,
@@ -47,9 +48,13 @@ class ComposerStaticInitd67feed0f16b3434232cf7c67f637120
     );
 
     public static $prefixDirsPsr4 = array (
-        'ultraman\\install\\' => 
+        'ultraman\\Yaf\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/install',
+            0 => __DIR__ . '/../..' . '/Yaf',
+        ),
+        'ultraman\\Tcp\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Tcp',
         ),
         'ultraman\\Log\\' => 
         array (
@@ -357,9 +362,14 @@ class ComposerStaticInitd67feed0f16b3434232cf7c67f637120
         'ultraman\\Foundation\\Enumeration' => __DIR__ . '/../..' . '/Foundation/Enumeration.php',
         'ultraman\\Foundation\\Response' => __DIR__ . '/../..' . '/Foundation/Response.php',
         'ultraman\\Http\\Http' => __DIR__ . '/../..' . '/Http/Http.php',
+        'ultraman\\Http\\HttpYafServer' => __DIR__ . '/../..' . '/Http/HttpYafServer.php',
         'ultraman\\Http\\SwooleHttpServer' => __DIR__ . '/../..' . '/Http/HttpServer.php',
         'ultraman\\Log\\monoLog' => __DIR__ . '/../..' . '/Log/monoLog.php',
-        'ultraman\\install\\yaf\\Installer' => __DIR__ . '/../..' . '/install/yaf/Installer.php',
+        'ultraman\\Tcp\\SwooleServer' => __DIR__ . '/../..' . '/Tcp/SwooleServer.php',
+        'ultraman\\Yaf\\BaseController' => __DIR__ . '/../..' . '/Yaf/Base.php',
+        'ultraman\\Yaf\\Bootstrap' => __DIR__ . '/../..' . '/Yaf/Bootstrap.php',
+        'ultraman\\Yaf\\Installer' => __DIR__ . '/../..' . '/Yaf/Install.php',
+        'ultraman\\Yaf\\plugins\\CommonPlugin' => __DIR__ . '/../..' . '/Yaf/plugins/CommonPlugin.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

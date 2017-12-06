@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ultraman\install\yaf;
+namespace ultraman\Yaf;
 
 use League\CLImate\CLImate;
 class Installer

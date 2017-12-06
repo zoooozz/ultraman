@@ -20,7 +20,8 @@
             "ultraman\\Http\\" : "Http/",
             "ultraman\\Log\\" : "Log/",
             "ultraman\\Exception\\" : "Exception/",
-            "ultraman\\install\\" : "install/"
+            "ultraman\\Yaf\\" : "Yaf/",
+            "ultraman\\Tcp\\" : "Tcp/"
             
         },
         "files": ["App.php"]  

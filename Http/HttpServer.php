@@ -31,6 +31,7 @@ class SwooleHttpServer
 	            'task_worker_num'=>$config['task_worker_num']?:4,
 	            'task_ipc_mode'=>$config['task_ipc_mode']?:1,
 	            'task_max_request'=>$config['task_max_request']?:5000,
+	            'log_file' => $config['log_file']
 			)
 		);
 		return $http;
