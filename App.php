@@ -59,10 +59,16 @@ class App
 
     public function ServiceRun($params)
     {
+
         $this->climate = new CLImate();
         $service = strtolower(trim(isset($params[1])?$params[1]:''));
         $command = strtolower(trim(isset($params[2])?$params[2]:''));
         $env = strtolower(trim(isset($params[3])?$params[3]:''));
+
+        if($service != 'h' && $service!='t'){
+            return true;
+        }
+        
         $this->configure($env,$command);
         if($service == 'h'){
             if($command == 's'){
@@ -81,6 +87,7 @@ class App
                 $this->reloadSwoole($service);
             }
         }
+
         die;
     }
     //重启
@@ -102,6 +109,7 @@ class App
         }
         $pid = exec('pidof'.' '.$name);
         exec("kill -USR1 ".$pid);
+        exec("kill -SIGUSR2 ".$pid);
         $this->climate->lightGreen('当前环境重启成功');
         die;
     }

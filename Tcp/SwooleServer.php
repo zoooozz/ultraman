@@ -48,8 +48,6 @@ class SwooleServer
 		$server->start();
 	}
 
-
-
 	public function onTask($serv, $task_id, $from_id, array $taskdata)
     {	
 

@@ -273,6 +273,7 @@ class Http
         $query = is_array($query) ? http_build_query($query, '', '&', PHP_QUERY_RFC3986) : $query; // PHP_QUERY_RFC3986 : Space will be turn to %20
         $this->query = $query;
         $this->url = $this->api_path . $api . ($query ? "?{$query}" : '');
+
         if ($this->headers) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
         }
