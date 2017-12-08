@@ -23,16 +23,28 @@ class App
      * @param api   外部接口配置项
      */
 
-    protected $_config = [];
     protected $climate;
+
+    /**
+     *  入口文件加载
+     */
+
     public function __construct($config = [])
     {   
         require dirname(dirname(__FILE__)."/../").'/vendor/autoload.php';
         if(count($config) == 0){
             return true;
         }
+        $this->injection($config);
+    }
 
-        foreach ($config['conf'] as $key => $class) {
+    /**
+     *  依赖文件注入
+     */
+    
+    public function injection($params)
+    {
+        foreach ($params as $key => $class) {
             $f = pathinfo($class, PATHINFO_EXTENSION); 
             if($f === 'php'){
                 $conf = @include $class;
@@ -48,10 +60,8 @@ class App
             }    
             DI::set($key,$conf);
         }
-        $this->_config = $config;
         return true;
     }
-
 
     /**
      *  服务器启动 
@@ -64,88 +74,83 @@ class App
         $service = strtolower(trim(isset($params[1])?$params[1]:''));
         $command = strtolower(trim(isset($params[2])?$params[2]:''));
         $env = strtolower(trim(isset($params[3])?$params[3]:''));
-
-        if($service != 'h' && $service!='t'){
+        if(($env == '') || ($service != '-h' && $service!='-t')){
             return true;
         }
-        
         $this->configure($env,$command);
-        if($service == 'h'){
-            if($command == 's'){
+        if($service == '-h'){
+            if($command == 'start'){
                 $app = new \ultraman\Http\HttpYafServer();
             }
-            if($command == 'r'){
-                $this->reloadSwoole($service);
+            if($command == 'reload'){
+                $this->reloadSwoole($service,$env);
             }
         }
-        if($service == 't'){
-            if($command == 's'){
+        if($service == '-t'){
+            if($command == 'start'){
                 $app = new \ultraman\Tcp\SwooleServer($params);
             }
 
-            if($command == 'r'){
-                $this->reloadSwoole($service);
+            if($command == 'reload'){
+                $this->reloadSwoole($service,$env);
             }
         }
-
-        die;
+        
+        return true;        
     }
-    //重启
-    private function reloadSwoole($service)
+    
+    /**
+     *  服务重启
+     */
+
+
+    private function reloadSwoole($service,$env)
     {
-        if(PHP_OS == 'Darwin'){
-            $this->climate->red('重启命令暂时不支持mac电脑');
-            die;
-        }
+        
         $config = DI::get('main');
+        $class = dirname(dirname(dirname(dirname(__FILE__)))).'/env/'.$env.'/main.ini';
+        $config = @parse_ini_file($class,true);
+        
         $name = $config['common']['application.service_name'];
         if($name == ''){
-            $this->climate->red('配置信息不完整 无法重启');
-            return;
+            return true;
         }
-
-        if($service == 't'){
+        if($service == '-t'){
             $name = $name.'tcp';
         }
         $pid = exec('pidof'.' '.$name);
         exec("kill -USR1 ".$pid);
         exec("kill -SIGUSR2 ".$pid);
-        $this->climate->lightGreen('当前环境重启成功');
-        die;
+        return true;
     }
-    //配置文件
+    
+        
+
+    /**
+     *  配置文件环境加载
+     */
+
     private function configure($env,$command)
     {   
-        if($env == '' && $command == 's'){
-            $this->climate->red('启动时候必须选择环境');
-            return;
-        }
-
-        if($env == '' && $command == 'r'){
-            return true;
-        }
-        $_supprot=['dev','test','pre','prod'];
-        if(!in_array(trim($env),$_supprot)){
-            $this->climate->red('环境必须选择:dev,test,pre,prod');
-            return;
-        }
         $config = dirname(dirname(dirname(dirname(__FILE__))));
         $conf = dir($config.'/conf');
         $env = dir($config.'/env/'.$env);
-
+        
         while(false != ($item = $conf->read())) {
-            if($item == '.' || $item == '..') {
-                continue;
-            }
+            if($item == '.' || $item == '..') continue;
             unlink($conf->path.'/'.$item);
         }
-
+   
         while(false != ($item = $env->read())) {
-            if($item == '.' || $item == '..') {
-                continue;
-            }
+            if($item == '.' || $item == '..') continue;
             copy($env->path.'/'.$item,$conf->path.'/'.$item);
+            
+            $houzhui = substr(strrchr($item, '.'), 1);
+            $keys = basename($item,".".$houzhui);
+            $params[$keys] = $conf->path.'/'.$item;
         }
+        //加载配置文件
+        $this->injection($params);
         return true;
     }
 }

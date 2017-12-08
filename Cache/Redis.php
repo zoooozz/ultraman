@@ -28,7 +28,6 @@ class Redis
     public static function configure($config)
     {
         static::$config = $config;
-
         return true;
     }
 
@@ -37,18 +36,30 @@ class Redis
      * @param []
      */
 
-    public static function getRedisInstance()
-    {
+    public static function getRedisInstance($key = 'master')
+    {   
+
         if (null === static::$_instance) {
             $redis =  new \Redis;
+            $conf = self::$config[$key];
 
-            @$connect = $redis->connect(self::$config['host'], self::$config['port'], 0.2);
-             if($connect){
+            $timeout = isset($conf['timeout'])?$conf['timeout']:0.2;
+            @$connect = $redis->connect($conf['host'], $conf['port'], $timeout);
+
+            if($conf['password']!=''){
+                 $redis->auth($conf['password']);
+            }
+
+            if (!empty($conf['database'])){
+                $redis->select($conf['database']);
+            }
+
+            if($connect){
                 static::$_instance = $redis;
-             }else{
+            }else{
                 static::$_instance = '';
                 monoLog::write("ERROR","使用Redis链接失败请处理");
-             }
+            }
         }
         return static::$_instance;
     }

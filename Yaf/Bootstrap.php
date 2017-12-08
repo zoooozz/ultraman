@@ -14,27 +14,11 @@ class Bootstrap extends \Yaf_Bootstrap_Abstract
         \Yaf_Dispatcher::getInstance()->autoRender(false);
     }
 
-
-    public function _initConfig()
-    {
-        $main = \Yaf_Application::app()->getConfig();
-        $conf = include $main['application']['database'];
-        if($conf != "" && count($conf)!=0){
-            \ultraman\Foundation\DI::set('database',$conf);
-        }
-        $log = $main['application']['logger']['path']?:'/tmp';
-        $log_name = $main['application']['service_name'];      
-       	\ultraman\Foundation\DI::set("log",['path'=>$log,'name'=>$log_name]);
-        \Yaf_Registry::set('main', $main);
-    }
-    
     //注册一个插件
     public function _initCommonPlugin(\Yaf_Dispatcher $dispatcher) {
         $common_plugin = new \ultraman\Yaf\plugins\CommonPlugin();
         $dispatcher->registerPlugin($common_plugin);
     }
-
-
 
     /**
      * @var 路由配置加载
