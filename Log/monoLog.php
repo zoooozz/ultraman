@@ -42,14 +42,12 @@ class monoLog
 
 	public static function write($level = 'INFO',$params = [])
 	{
-     
 		if(count($params) == 0){
 			return true; 
 		}
 		$item = [];
         $item['query'] = $params;
-        
-        $config = DI::get('log');
+        $config = DI::get('log');        
      	if(count($config) == 0 || $config == ""){
      		return true;
      	}

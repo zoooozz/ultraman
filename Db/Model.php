@@ -75,11 +75,24 @@ class Model
 
     public function __call($method, $arguments)
     {   
-        if ($this->_db && method_exists($this->_db, $method)) {
-            return call_user_func_array([$this->_db, $method], $arguments);
+
+         try {
+            if ($this->_db && method_exists($this->_db, $method)) {
+                return call_user_func_array([$this->_db, $method], $arguments);
+            }
+            return false;
+        }catch(PDOException $e) {
+            if($e->getCode() == 'HY000' || stristr($e->getMessage(), 'server has gone away')){
+                $this->connect();
+            }
+            if ($this->_db && method_exists($this->_db, $method)) {
+                return call_user_func_array([$this->_db, $method], $arguments);
+            }
+            return false;
         }
 
-        return false;
+
+
     }
 
     /**
