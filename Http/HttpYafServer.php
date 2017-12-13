@@ -39,8 +39,10 @@ class HttpYafServer
 			$this->initRequestParam($request);
             ob_start();
           	try {
+
 				$yaf_request = new \Yaf_Request_Http($request->server['request_uri']);
-			    $this->application->getDispatcher()->dispatch($yaf_request);
+                $this->application->getDispatcher()->dispatch($yaf_request);
+
 			} catch ( \Exception $e ) {
 				$params = [
 		        	'code'=>$e->getCode(),
