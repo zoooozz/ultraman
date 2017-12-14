@@ -124,7 +124,6 @@ class App
         }
         $pid = exec('pidof'.' '.$name);
         exec("kill -USR1 ".$pid);
-        // exec("kill -SIGUSR2 ".$pid);
         die;
     }
     
