@@ -110,7 +110,7 @@ class App
 
     private function reloadSwoole($service,$env)
     {
-        
+
         $config = DI::get('main');
         $class = dirname(dirname(dirname(dirname(__FILE__)))).'/env/'.$env.'/main.ini';
         $config = @parse_ini_file($class,true);
@@ -118,13 +118,23 @@ class App
         $name = $config['common']['application.service_name'];
         if($name == ''){
             return true;
-        }
-        if($service == '-t'){
+        }   
+
+        if($service === '-t'){
             $name = $name.'tcp';
+            $pid = exec('pidof'.' '.$name);
+            if($pid != ''){
+                exec("kill -TERM ".$pid);
+                sleep(1);
+                $app = new \ultraman\Tcp\SwooleServer();
+            }
+        }elseif($service === '-h'){
+            $pid = exec('pidof'.' '.$name);
+            if($pid !=''){
+                exec("kill -USR1 ".$pid);   
+            }
         }
-        $pid = exec('pidof'.' '.$name);
-        exec("kill -USR1 ".$pid);
-        die;
+      die;
     }
     
         
