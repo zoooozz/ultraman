@@ -58,10 +58,20 @@ class BaseController extends \Yaf_Controller_Abstract
             $params = $_GET;
         }
         
-        if($name != '' && isset($params[$name])){
-            $params = $params[$name];
+        $items = [];
+        if(count($params)!=0){
+            $items = [];
+            foreach ($params as $key => $value) {
+                $items[$key] = trim($value);
+            }
         }
-        return $params;
+    
+        if($name != '' && isset($items[$name])){
+            $items = $items[$name];
+        }
+
+
+        return $items;
     }
 
 
@@ -77,9 +87,21 @@ class BaseController extends \Yaf_Controller_Abstract
         }else{
             $params = $_POST;
         }
-        if($name != '' && isset($params[$name])){
-            $params = $params[$name];
+       
+
+        $items = [];
+        if(count($params)!=0){
+            $items = [];
+            foreach ($params as $key => $value) {
+                $items[$key] = trim($value);
+            }
         }
+    
+        if($name != '' && isset($items[$name])){
+            $items = $items[$name];
+        }
+
+
         return $params;
     }
 
