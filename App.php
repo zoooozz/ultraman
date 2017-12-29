@@ -132,6 +132,8 @@ class App
             $pid = exec('pidof'.' '.$name);
             if($pid !=''){
                 exec("kill -USR1 ".$pid);   
+            }else{
+                $app = new \ultraman\Http\HttpYafServer();                
             }
         }
       die;
