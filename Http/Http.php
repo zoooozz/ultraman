@@ -98,6 +98,7 @@ class Http
         'timeout' => 3,
         'retry' => 0,
         'cookie'=>'',
+        'user_agent'=>'',
     ];
 
     /**
@@ -109,7 +110,7 @@ class Http
     protected function getHandler($opts = [])
     {
         $ch = curl_init();
-        $opts = array_merge($this->opts, $opts);
+        $opts = array_merge($this->opts, $opts);        
         curl_setopt($ch, CURLOPT_DNS_USE_GLOBAL_CACHE, $opts['dns_use_global_cache']);
         curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, $opts['dns_cache_timeout']);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, $opts['returntransfer']);
@@ -118,12 +119,13 @@ class Http
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $opts['connecttimeout']);
         curl_setopt($ch, CURLOPT_TIMEOUT, $opts['timeout']);
         curl_setopt($ch, CURLOPT_COOKIE, $opts['cookie']);
-
         if (isset($opts['proxy_server']) && $opts['proxy_server']) {
             curl_setopt($ch, CURLOPT_PROXYTYPE, $opts['proxy_type'] ? $opts['proxy_type'] : CURLPROXY_SOCKS4);//使用了SOCKS5代理    0/4/5
             curl_setopt($ch, CURLOPT_PROXY, $opts['proxy_server']);
         }
-
+        if (isset($opts['user_agent']) && $opts['user_agent']) {
+            curl_setopt($ch,CURLOPT_USERAGENT,$opts['user_agent']);           
+        }
         return $ch;
     }
 
@@ -184,7 +186,6 @@ class Http
         $this->opts['proxy_type'] = $type;
         $this->opts['proxy_server'] = $ser;
         return $this;
-
     }
 
     public function setAuthor($author = '')
@@ -214,7 +215,11 @@ class Http
 
     }
 
-
+    public function setUserAgent($str)
+    {
+        $this->opts['user_agent'] = $str;
+        return $this;
+    }
 
     public function setRetry($retry = 1)
     {
@@ -295,7 +300,6 @@ class Http
         $query = is_array($query) ? http_build_query($query) : $query;
         $this->query = $query;
         $this->url = $this->api_path . $api;
-
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
         if ($this->headers) {
@@ -383,7 +387,7 @@ class Http
      */
 
     protected function run($ch, $retry = 0)
-    {        
+    {               
         if (!$this->isUrl($this->url)) {
             throw new \Exception("接口配置错误",Ecode::API_LINK_ERROR);
         }
@@ -396,10 +400,10 @@ class Http
             sleep(1);
             $response = curl_exec($ch);
         }
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);        
         $params['HttpCode'] = $httpCode;
         $params['uri'] = $this->url;
-        $params['ops'] = $this->query;
+        $params['ops'] = $this->query;        
         $this->httpCode = $httpCode;
 
         if ($response === false) {

@@ -75,26 +75,29 @@ class App
         $command = strtolower(trim(isset($params[2])?$params[2]:''));
         $env = strtolower(trim(isset($params[3])?$params[3]:''));
 
+
         if(($env == '') || ($service != '-h' && $service!='-t')){
             return true;
         }
-        $this->configure($env,$command);
-        sleep(1);
 
+
+        $this->configure($env,$command);
         if($service == '-h'){
             if($command == 'start'){
                 $app = new \ultraman\Http\HttpYafServer();
             }
+            if($command == 'reload'){
+                $this->reloadSwoole($service,$env);
+            }
         }
-
         if($service == '-t'){
             if($command == 'start'){
                 $app = new \ultraman\Tcp\SwooleServer($params);
             }
-        }
 
-        if($command == 'reload'){
-            $this->reloadSwoole($service,$env);
+            if($command == 'reload'){
+                $this->reloadSwoole($service,$env);
+            }
         }
         
         return true;        
@@ -111,10 +114,12 @@ class App
         $config = DI::get('main');
         $class = dirname(dirname(dirname(dirname(__FILE__)))).'/env/'.$env.'/main.ini';
         $config = @parse_ini_file($class,true);
+        
         $name = $config['common']['application.service_name'];
         if($name == ''){
             return true;
         }   
+
         if($service === '-t'){
             $name = $name.'tcp';
             $pid = exec('pidof'.' '.$name);
@@ -126,8 +131,7 @@ class App
         }elseif($service === '-h'){
             $pid = exec('pidof'.' '.$name);
             if($pid !=''){
-                exec("kill -USR1 ".$pid);  
-                sleep(1);                 
+                exec("kill -USR1 ".$pid);   
             }else{
                 $app = new \ultraman\Http\HttpYafServer();                
             }
@@ -135,7 +139,8 @@ class App
       die;
     }
     
-    
+        
+
     /**
      *  配置文件环境加载
      */

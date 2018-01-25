@@ -8,10 +8,4 @@
 
 #### hprose 提供rpc支持
 
-使用方法 "ultraman/ultraman":"v0.0.9",
-
-
-
-
-
 

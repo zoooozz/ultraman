@@ -46,7 +46,9 @@ class HttpYafServer
 			} catch ( \Exception $e ) {
 				$params = [
 		        	'code'=>$e->getCode(),
-		        	'msg'=>$e->getMessage()
+                    'msg'=>$e->getMessage(),
+                    'errcode'=>$e->getCode(),
+                    'errmsg'=>$e->getMessage(),
        			];
 		        echo  json_encode($params,JSON_UNESCAPED_UNICODE);
 			}
@@ -61,8 +63,8 @@ class HttpYafServer
 		$http->start();
 	}
 
-	public function onWorkerStart() 
-	{
+	public function onWorkerStart($serv, $worker_id) 
+	{        
 		$config = APPLICATION_PATH.'/conf/main.ini';
         try {
             $this->application = new \Yaf_Application($config);
@@ -72,7 +74,9 @@ class HttpYafServer
         }catch (\Exception $e) {
             $params = [
                 'code'=>$e->getCode(),
-                'msg'=>$e->getMessage()
+                'msg'=>$e->getMessage(),
+                'errcode'=>$e->getCode(),
+                'errmsg'=>$e->getMessage()
             ];
             echo  json_encode($params,JSON_UNESCAPED_UNICODE);
         }
@@ -105,29 +109,25 @@ class HttpYafServer
         return true;
     }
 
-    public function onTask($serv, $task_id, $from_id, array $taskdata)
+    public function onTask($serv, $task_id, $from_id,$data)
     {	
-
-    	if($taskdata['cli'] == ''){
-    		return false;
-    	}
-    	$cli = $taskdata['cli'];
-    	$params = '';
-    	if($taskdata['params']!=''){
-    		foreach ($taskdata['params'] as $key => $value) {
-                if(trim($value) == ''){
-                    continue;
+        if(isset($data['cli']) && $data['cli'] != ''){
+            $cli = $data['cli'];
+            $params = '';
+            if(isset($data['params']) && count($data['params'])!=0 && is_array($data['params'])){
+                foreach ($data['params'] as $key => $value) {
+                    if(trim($value) == '')continue;
+                    $params.="--{$key} ".$value." ";
                 }
-    			$params.="--{$key} ".$value." ";
-    		}
-    	}
-    	$path = 'php '.APPLICATION_PATH.'/public/cli '.$cli.' '. $params;
-    	$app = exec($path);
-  		$taskdata['msg'] = "异步任务[来自进程 {$from_id}，当前进程 {$task_id}";
-  		\ultraman\Log\monoLog::write("INFO",$taskdata);
-  		$taskdata = serialize($taskdata);
+            }
+            $path = 'php '.APPLICATION_PATH.'/cli '.$cli.' '. $params;            
+        }else{
+            call_user_func_array($data['class'],[$data]);
+        }
+        
+        $items['msg'] = "异步任务[来自进程 {$from_id}，当前进程 {$task_id}";
+        $taskdata = serialize($items);
   		$serv->finish($taskdata);
-
     }
     
     public function onFinish($serv, $task_id, $data)
