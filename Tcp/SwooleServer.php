@@ -34,7 +34,9 @@ class SwooleServer
 	            'dispatch_mode' => $main['dispatch_mode'],
 	            'task_worker_num'=>$main['task_worker_num']?:4,
 	            'task_ipc_mode'=>$main['task_ipc_mode']?:1,
-	            'task_max_request'=>$main['task_max_request']?:5000,
+				'task_max_request'=>$main['task_max_request']?:5000,
+				'heartbeat_check_interval'=>$main['heartbeat_check_interval']?:30,
+				'heartbeat_idle_time'=>$main['heartbeat_idle_time']?:60
 			)
 		);
 		$server->on('task', array($this, 'onTask'));

@@ -28,40 +28,44 @@ class HttpYafServer
 		$app = new \ultraman\Http\SwooleHttpServer($http_service);
 		$http = $app->connent();
         \Yaf_Registry::set('swoole_http', $http);
-		$http->on('WorkerStart' , array( $this , 'onWorkerStart'));
-		$http->on('request', function ($request, $response) {
-
-            if ($request->server['request_uri'] == '/favicon.ico') {
-                $response->end();
-                return;
-            }
-
-			$this->initRequestParam($request);
-            ob_start();
-          	try {
-
-				$yaf_request = new \Yaf_Request_Http($request->server['request_uri']);
-                $this->application->getDispatcher()->dispatch($yaf_request);
-
-			} catch ( \Exception $e ) {
-				$params = [
-		        	'code'=>$e->getCode(),
-                    'msg'=>$e->getMessage(),
-                    'errcode'=>$e->getCode(),
-                    'errmsg'=>$e->getMessage(),
-       			];
-		        echo  json_encode($params,JSON_UNESCAPED_UNICODE);
-			}
-            $result = ob_get_contents();
-            ob_end_clean();
-            $response->header('Content-Type', 'text/html; charset=utf-8');
-            $response->end($result);
-		});        
+		$http->on('WorkerStart' , array( $this , 'onWorkerStart'));    
+        $http->on('request', array($this, 'onRequest'));
         $http->on('Start', array($this, 'onStart'));
 		$http->on('task', array($this, 'onTask'));
         $http->on('finish', array($this, 'onFinish'));
 		$http->start();
 	}
+
+
+    public function onRequest($request,$response)
+    {
+        if ($request->server['request_uri'] == '/favicon.ico') {
+            $response->end();
+            return;
+        }
+
+        $this->initRequestParam($request);
+        ob_start();
+          try {
+
+            $yaf_request = new \Yaf_Request_Http($request->server['request_uri']);
+            $this->application->getDispatcher()->dispatch($yaf_request);
+
+        } catch ( \Exception $e ) {
+            $params = [
+                'code'=>$e->getCode(),
+                'msg'=>$e->getMessage(),
+                'errcode'=>$e->getCode(),
+                'errmsg'=>$e->getMessage(),
+               ];
+            echo  json_encode($params,JSON_UNESCAPED_UNICODE);
+        }
+        $result = ob_get_contents();
+        ob_end_clean();
+        $response->header('Content-Type', 'text/html; charset=utf-8');
+        $response->end($result);
+    }
+
 
 	public function onWorkerStart($serv, $worker_id) 
 	{        
