@@ -14,6 +14,7 @@ require AUTHLOAD.'/autoload.php';
 class HttpYafServer
 {
 	protected $application;
+	protected $http;
 	public function __construct() 
 	{	
 		new \ultraman\App();
@@ -26,9 +27,9 @@ class HttpYafServer
 		$config = @parse_ini_file(APPLICATION_PATH."/conf/main.ini",true);
 		$http_service = $config['http-service'];
 		$app = new \ultraman\Http\SwooleHttpServer($http_service);
-		$http = $app->connent();
-        \Yaf_Registry::set('swoole_http', $http);
-		$http->on('WorkerStart' , array( $this , 'onWorkerStart'));    
+        $http = $app->connent();
+        $this->http = $http;        
+        $http->on('WorkerStart' , array( $this , 'onWorkerStart'));    
         $http->on('request', array($this, 'onRequest'));
         $http->on('Start', array($this, 'onStart'));
 		$http->on('task', array($this, 'onTask'));
@@ -43,21 +44,24 @@ class HttpYafServer
             $response->end();
             return;
         }
-
+        \Yaf_Registry::set('swoole_http', $this->http);        
         $this->initRequestParam($request);
         ob_start();
           try {
-
             $yaf_request = new \Yaf_Request_Http($request->server['request_uri']);
             $this->application->getDispatcher()->dispatch($yaf_request);
-
-        } catch ( \Exception $e ) {
+        } catch ( \Exception $e ) {            
+            $data =  \Yaf_Registry::get('Exception');
             $params = [
                 'code'=>$e->getCode(),
                 'msg'=>$e->getMessage(),
                 'errcode'=>$e->getCode(),
                 'errmsg'=>$e->getMessage(),
-               ];
+            ];
+            if($data!=""){
+                $params['data'] = $data;
+                \Yaf_Registry::set('Exception','');
+            }
             echo  json_encode($params,JSON_UNESCAPED_UNICODE);
         }
         $result = ob_get_contents();
@@ -81,7 +85,7 @@ class HttpYafServer
                 'msg'=>$e->getMessage(),
                 'errcode'=>$e->getCode(),
                 'errmsg'=>$e->getMessage()
-            ];
+            ];            
             echo  json_encode($params,JSON_UNESCAPED_UNICODE);
         }
 		

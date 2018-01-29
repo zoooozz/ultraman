@@ -2,8 +2,13 @@
 
 namespace ultraman\Exception;
 
-class Exception extends BaseException
+class Exception extends \Exception
 {
-    protected $code = 500;
-    protected $message = 'API Call Error';
+    public function __toString()
+    {
+        $data['msg'] =  $this->message;
+        $data['code'] = $this->code;
+        header('Content-Type:application/json; charset=utf-8');
+        return json_encode($data);
+    }
 }

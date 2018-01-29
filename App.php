@@ -136,7 +136,7 @@ class App
                 $app = new \ultraman\Http\HttpYafServer();                
             }
         }
-      die;
+      return;
     }
     
         
