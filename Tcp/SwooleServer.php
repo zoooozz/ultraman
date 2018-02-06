@@ -28,15 +28,15 @@ class SwooleServer
 
 		$server->set(
 			array(
-				'worker_num' => $main['worker_num']?:3,
-				'daemonize' => $main['daemonize'],
-	            'max_request' => $main['max_request']?:10000,
-	            'dispatch_mode' => $main['dispatch_mode'],
-	            'task_worker_num'=>$main['task_worker_num']?:4,
-	            'task_ipc_mode'=>$main['task_ipc_mode']?:1,
-				'task_max_request'=>$main['task_max_request']?:5000,
-				'heartbeat_check_interval'=>$main['heartbeat_check_interval']?:30,
-				'heartbeat_idle_time'=>$main['heartbeat_idle_time']?:60
+				'worker_num'=>isset($main['worker_num'])?$main['worker_num']:3,
+				'daemonize'=>isset($main['daemonize'])?$main['daemonize']:false,
+				'max_request'=>isset($main['max_request'])?$main['max_request']:10000,
+				'dispatch_mode'=>isset($main['dispatch_mode'])?$main['dispatch_mode']:0,
+				'task_worker_num'=>isset($main['task_worker_num'])?$main['task_worker_num']:4,
+				'task_ipc_mode'=>isset($main['task_ipc_mode'])?$main['task_ipc_mode']:1,
+				'task_max_request'=>isset($main['task_max_request'])?$main['task_max_request']:5000,
+				'heartbeat_check_interval'=>isset($main['heartbeat_check_interval'])?$main['heartbeat_check_interval']:30,
+				'heartbeat_idle_time'=>isset($main['heartbeat_idle_time'])?$main['heartbeat_idle_time']:60,
 			)
 		);
 		$server->on('task', array($this, 'onTask'));

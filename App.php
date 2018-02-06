@@ -75,14 +75,11 @@ class App
         $command = strtolower(trim(isset($params[2])?$params[2]:''));
         $env = strtolower(trim(isset($params[3])?$params[3]:''));
 
-
         if(($env == '') || ($service != '-h' && $service!='-t')){
             return true;
-        }
-
-
+        }        
         $this->configure($env,$command);
-        if($service == '-h'){
+        if($service == '-h'){            
             if($command == 'start'){
                 $app = new \ultraman\Http\HttpYafServer();
             }
@@ -110,6 +107,12 @@ class App
 
     private function reloadSwoole($service,$env)
     {
+        $os = strtoupper(substr(PHP_OS,0,3));
+        if($os == 'DAR'){
+            $climate = new climate();
+            $climate->error('reload 只支持linux电脑 mac 直接强杀');
+            exit(0);        
+        }
 
         $config = DI::get('main');
         $class = dirname(dirname(dirname(dirname(__FILE__)))).'/env/'.$env.'/main.ini';
@@ -136,7 +139,7 @@ class App
                 $app = new \ultraman\Http\HttpYafServer();                
             }
         }
-      return;
+        exit;
     }
     
         

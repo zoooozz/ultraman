@@ -41,8 +41,8 @@ class Redis
 
         if (null === static::$_instance) {
             $redis =  new \Redis;
+            \ultraman\Log\monoLog::write("INFO","链接了一次redis");
             $conf = self::$config[$key];
-
             $timeout = isset($conf['timeout'])?$conf['timeout']:0.2;
             @$connect = $redis->connect($conf['host'], $conf['port'], $timeout);
 

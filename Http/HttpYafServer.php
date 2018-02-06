@@ -92,6 +92,7 @@ class HttpYafServer
 	}
 
     public function onStart( $serv ) {
+        
         $config = @parse_ini_file(APPLICATION_PATH."/conf/main.ini",true);
         $name = $config['common']['application.service_name'];
         echo $name."服务启动\n";
@@ -118,7 +119,7 @@ class HttpYafServer
     }
 
     public function onTask($serv, $task_id, $from_id,$data)
-    {	
+    {	        
         if(isset($data['cli']) && $data['cli'] != ''){
             $cli = $data['cli'];
             $params = '';
@@ -127,8 +128,9 @@ class HttpYafServer
                     if(trim($value) == '')continue;
                     $params.="--{$key} ".$value." ";
                 }
-            }
-            $path = 'php '.APPLICATION_PATH.'/cli '.$cli.' '. $params;            
+            }          
+            $path = 'php '.APPLICATION_PATH.'/cli '.$cli.' '. $params;  
+            exec($path);          
         }else{
             call_user_func_array($data['class'],[$data]);
         }
