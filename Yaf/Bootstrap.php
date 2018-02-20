@@ -10,7 +10,7 @@ class Bootstrap extends \Yaf_Bootstrap_Abstract
 
 	//禁止使用view 
 	public function _initYaf()
-    {      
+    {              
         \Yaf_Dispatcher::getInstance()->autoRender(false);
     }
 

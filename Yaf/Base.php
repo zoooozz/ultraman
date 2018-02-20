@@ -7,20 +7,19 @@
 namespace ultraman\Yaf;
 
 use ultraman\Foundation\Response;
+
 class BaseController extends \Yaf_Controller_Abstract
 {
-
+    
     protected $route_method_map = [];
-
 
     /**
      *  方法的方式验证 
      */
-
-
+    
     public function init()
     {
-        $request = $this->getRequest();
+        $request = $this->getRequest();        
         if(count($this->route_method_map) == 0 || !isset($this->route_method_map[$request->action])){
             return true;
         }
@@ -57,7 +56,6 @@ class BaseController extends \Yaf_Controller_Abstract
         }else{
             $params = $_GET;
         }
-        
         $items = [];
         if(count($params)!=0){
             $items = [];
@@ -87,8 +85,7 @@ class BaseController extends \Yaf_Controller_Abstract
         }else{
             $params = $_POST;
         }
-       
-
+    
         $items = [];
         if(count($params)!=0){
             $items = [];
@@ -100,8 +97,6 @@ class BaseController extends \Yaf_Controller_Abstract
         if($name != '' && isset($items[$name])){
             $items = $items[$name];
         }
-
-
         return $params;
     }
 

@@ -183,7 +183,7 @@ class Model
         foreach ($key as $k => $v) {
             $arr[] = ":" . $v;            
         }
-        $result = ' (`' . implode('`,`', $key) . '`) VALUES ('.implode(',', $arr).')';;
+        $result = ' (`' . implode('`,`', $key) . '`) VALUES ('.implode(',', $arr).')';
         return $result;
     }
 
@@ -209,6 +209,34 @@ class Model
         }
         $str = substr($str, 0, -1)?:"*";
         $items = $this->query("SELECT {$str} FROM {$tab} {$condition}");
+        return $items;
+    }
+
+    /**
+     *  批量新增封装
+     */
+
+    public function batchInsert($tab='',$params)
+    {
+        if($tab ==""){
+            return false;
+        }
+        $key = array_keys($params[0]);
+        foreach ($key as $k => $v) {
+            $arr[] = ":" . $v;            
+        }
+        $sql = 'INSERT INTO '.$tab.' (`' . implode('`,`', $key) . '`) VALUES ';
+        foreach ($params as $key => $value) {
+            $str = "(";
+            foreach ($value as $k => $v) {
+                $str .="'".$v."',";
+            }
+            $str = substr($str,0,strlen($str)-1);            
+            $str .='),';
+            $sql .=$str;           
+        }
+        $sql = substr($sql,0,strlen($sql)-1);      
+        $items = $this->exec($sql);
         return $items;
     }
 }

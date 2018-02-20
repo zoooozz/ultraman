@@ -24,7 +24,7 @@ class HttpYafServer
 	private function run()
 	{	
 
-		$config = @parse_ini_file(APPLICATION_PATH."/conf/main.ini",true);
+        $config = @parse_ini_file(APPLICATION_PATH."/conf/main.ini",true);
 		$http_service = $config['http-service'];
 		$app = new \ultraman\Http\SwooleHttpServer($http_service);
         $http = $app->connent();
@@ -72,8 +72,8 @@ class HttpYafServer
 
 
 	public function onWorkerStart($serv, $worker_id) 
-	{        
-		$config = APPLICATION_PATH.'/conf/main.ini';
+	{   
+        $config = APPLICATION_PATH.'/conf/main.ini';
         try {
             $this->application = new \Yaf_Application($config);
             ob_start();
