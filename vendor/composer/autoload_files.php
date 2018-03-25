@@ -7,5 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'd7f4f7522f962c095f835c50e6136087' => $vendorDir . '/hprose/hprose/src/init.php',
-    'c8eb2e3d5d98f547626316c83580fab8' => $baseDir . '/App.php',
+    '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
+    '841780ea2e1d6545ea3a253239d59c05' => $vendorDir . '/qiniu/php-sdk/src/Qiniu/functions.php',
+    'c8eb2e3d5d98f547626316c83580fab8' => $vendorDir . '/ultraman/ultraman/App.php',
 );

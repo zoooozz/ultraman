@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * @var cli 脚本使用
+ */
+
+define('ROOT', __DIR__);
+date_default_timezone_set('Asia/Shanghai');
+
+require ROOT.'/vendor/autoload.php';
+
+
+$service = @parse_ini_file(dirname(__FILE__).'/conf/main.ini',true);
+ultraman\Foundation\DI::set("log",
+	['path'=>$service['common']['application.logger.path'],
+	 'name'=>$service['common']['application.service_name']
+	]
+);
+$conf = [
+	"database"  =>ROOT.'/conf/database.php',
+	"api" 		=>ROOT.'/conf/api.php',
+	"redis" 	=>ROOT.'/conf/redis.php',
+	"main" 		=>ROOT.'/conf/main.ini',
+];
+$app = new \ultraman\App($conf);
+$app->ServiceRun($argv); 
+$application = new Symfony\Component\Console\Application();
+$application->add(new consoles\AnohanaCommand());
+$application->run();

@@ -1,0 +1,45 @@
+{
+    "name": "ultraman/ultraman",
+    "description": "",
+    "homepage": "https://github.com/zoooozz/ultraman",
+    "type": "library",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.1.0",
+        "monolog/monolog": ">=1.23.0",
+        "hprose/hprose-swoole": ">=2.0.0",
+        "league/climate": "~3.2"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "ultraman\\Foundation\\" : "Foundation/",
+            "ultraman\\Cache\\" : "Cache/",
+            "ultraman\\Db\\" : "Db/",
+            "ultraman\\Common\\" : "Common/",
+            "ultraman\\Http\\" : "Http/",
+            "ultraman\\Log\\" : "Log/",
+            "ultraman\\Exception\\" : "Exception/",
+            "ultraman\\Yaf\\" : "Yaf/",
+            "ultraman\\Tcp\\" : "Tcp/"
+            
+        },
+        "files": ["App.php"]  
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "composer dump -o"
+        ],
+    
+        "post-update-cmd": [
+            "composer dump -o"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+        "dev-master": "1.0-dev"
+    }
+    
+}
+   
+}
