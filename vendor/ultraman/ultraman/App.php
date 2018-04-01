@@ -74,7 +74,6 @@ class App
         $service = strtolower(trim(isset($params[1])?$params[1]:''));
         $command = strtolower(trim(isset($params[2])?$params[2]:''));
         $env = strtolower(trim(isset($params[3])?$params[3]:''));
-
         if(($env == '') || ($service != '-h' && $service!='-t')){
             return true;
         }        
@@ -83,64 +82,10 @@ class App
             if($command == 'start'){
                 $app = new \ultraman\Http\HttpYafServer();
             }
-            if($command == 'reload'){
-                $this->reloadSwoole($service,$env);
-            }
-        }
-        if($service == '-t'){
-            if($command == 'start'){
-                $app = new \ultraman\Tcp\SwooleServer($params);
-            }
-
-            if($command == 'reload'){
-                $this->reloadSwoole($service,$env);
-            }
-        }
-        
+        } 
         return true;        
     }
     
-    /**
-     *  服务重启
-     */
-
-
-    private function reloadSwoole($service,$env)
-    {
-        $os = strtoupper(substr(PHP_OS,0,3));
-        if($os == 'DAR'){
-            $climate = new climate();
-            $climate->error('reload 只支持linux电脑 mac 直接强杀');
-            exit(0);        
-        }
-
-        $config = DI::get('main');
-        $class = dirname(dirname(dirname(dirname(__FILE__)))).'/env/'.$env.'/main.ini';
-        $config = @parse_ini_file($class,true);
-        
-        $name = $config['common']['application.service_name'];
-        if($name == ''){
-            return true;
-        }   
-
-        if($service === '-t'){
-            $name = $name.'tcp';
-            $pid = exec('pidof'.' '.$name);
-            if($pid != ''){
-                exec("kill -TERM ".$pid);
-                sleep(1);
-                $app = new \ultraman\Tcp\SwooleServer();
-            }
-        }elseif($service === '-h'){
-            $pid = exec('pidof'.' '.$name);
-            if($pid !=''){
-                exec("kill -USR1 ".$pid);   
-            }else{
-                $app = new \ultraman\Http\HttpYafServer();                
-            }
-        }
-        exit;
-    }
     
         
 

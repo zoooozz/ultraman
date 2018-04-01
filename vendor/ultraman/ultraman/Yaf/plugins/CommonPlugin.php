@@ -62,16 +62,20 @@ class CommonPlugin extends \Yaf_Plugin_Abstract
 
     public function dispatchLoopShutdown(\Yaf_Request_Abstract $request, \Yaf_Response_Abstract $response)
     {
-        $data = $response->data;
+        // if(!isset($response->data)){
+            // echo 1;
+            // return;
+        // }
+        $data = $response->data;        
         $interval = round(microtime(true) * 1000) - $request->starttime;
         $data['s'] = $interval.'ms';
         $result = json_encode($data);
-        //接口耗时
         if($request->jsonp){
-        	$params = \Yaf_Registry::get('REQUEST_GET');
-        	$result = $params['callback'] . "(" . $result . ")";
+            $params = \Yaf_Registry::get('REQUEST_GET');
+            $result = $params['callback'] . "(" . $result . ")";
         }
         echo $result;
+       
     }
 
 }
