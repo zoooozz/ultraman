@@ -10,13 +10,8 @@
     
     联系我:52727603 [qq]
     联系我脉脉:
-       
-   ![dxx] 
-   [dxx]: ./mm.png "code" { width:auto; max-width:100% } 
-      
-    
+   ![maimai](./mm.png)    
+  
 ## 奥特曼
-   
-   ![dxx] 
-   [dxx]: ./ultraman.jpeg "ultraman" { width:auto; max-width:100% } 
-    
+
+   ![maimai](./ultraman.jpeg)   
