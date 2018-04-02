@@ -21,8 +21,7 @@
             "ultraman\\Log\\" : "Log/",
             "ultraman\\Exception\\" : "Exception/",
             "ultraman\\Yaf\\" : "Yaf/",
-            "ultraman\\Tcp\\" : "Tcp/"
-            
+            "ultraman\\Tcp\\" : "Tcp/"            
         },
         "files": ["App.php"]  
     },

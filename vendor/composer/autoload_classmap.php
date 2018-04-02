@@ -255,6 +255,7 @@ return array(
     'ultraman\\Foundation\\DI' => $baseDir . '/Foundation/DI.php',
     'ultraman\\Foundation\\Ecode' => $baseDir . '/Foundation/Ecode.php',
     'ultraman\\Foundation\\Enumeration' => $baseDir . '/Foundation/Enumeration.php',
+    'ultraman\\Foundation\\OpenSign' => $baseDir . '/Foundation/OpenSign.php',
     'ultraman\\Foundation\\Response' => $baseDir . '/Foundation/Response.php',
     'ultraman\\Http\\Http' => $baseDir . '/Http/Http.php',
     'ultraman\\Http\\HttpYafServer' => $baseDir . '/Http/HttpYafServer.php',
@@ -263,6 +264,5 @@ return array(
     'ultraman\\Tcp\\SwooleServer' => $baseDir . '/Tcp/SwooleServer.php',
     'ultraman\\Yaf\\BaseController' => $baseDir . '/Yaf/Base.php',
     'ultraman\\Yaf\\Bootstrap' => $baseDir . '/Yaf/Bootstrap.php',
-    'ultraman\\Yaf\\Installer' => $baseDir . '/Yaf/Install.php',
     'ultraman\\Yaf\\plugins\\CommonPlugin' => $baseDir . '/Yaf/plugins/CommonPlugin.php',
 );

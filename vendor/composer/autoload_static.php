@@ -360,6 +360,7 @@ class ComposerStaticInitd67feed0f16b3434232cf7c67f637120
         'ultraman\\Foundation\\DI' => __DIR__ . '/../..' . '/Foundation/DI.php',
         'ultraman\\Foundation\\Ecode' => __DIR__ . '/../..' . '/Foundation/Ecode.php',
         'ultraman\\Foundation\\Enumeration' => __DIR__ . '/../..' . '/Foundation/Enumeration.php',
+        'ultraman\\Foundation\\OpenSign' => __DIR__ . '/../..' . '/Foundation/OpenSign.php',
         'ultraman\\Foundation\\Response' => __DIR__ . '/../..' . '/Foundation/Response.php',
         'ultraman\\Http\\Http' => __DIR__ . '/../..' . '/Http/Http.php',
         'ultraman\\Http\\HttpYafServer' => __DIR__ . '/../..' . '/Http/HttpYafServer.php',
@@ -368,7 +369,6 @@ class ComposerStaticInitd67feed0f16b3434232cf7c67f637120
         'ultraman\\Tcp\\SwooleServer' => __DIR__ . '/../..' . '/Tcp/SwooleServer.php',
         'ultraman\\Yaf\\BaseController' => __DIR__ . '/../..' . '/Yaf/Base.php',
         'ultraman\\Yaf\\Bootstrap' => __DIR__ . '/../..' . '/Yaf/Bootstrap.php',
-        'ultraman\\Yaf\\Installer' => __DIR__ . '/../..' . '/Yaf/Install.php',
         'ultraman\\Yaf\\plugins\\CommonPlugin' => __DIR__ . '/../..' . '/Yaf/plugins/CommonPlugin.php',
     );
 

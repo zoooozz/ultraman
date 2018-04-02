@@ -55,8 +55,7 @@ class HttpYafServer
             $params = [
                 'code'=>$e->getCode(),
                 'msg'=>$e->getMessage(),
-                'errcode'=>$e->getCode(),
-                'errmsg'=>$e->getMessage(),
+                           
             ];
             if($data!=""){
                 $params['data'] = $data;
@@ -83,8 +82,7 @@ class HttpYafServer
             $params = [
                 'code'=>$e->getCode(),
                 'msg'=>$e->getMessage(),
-                'errcode'=>$e->getCode(),
-                'errmsg'=>$e->getMessage()
+                
             ];            
             echo  json_encode($params,JSON_UNESCAPED_UNICODE);
         }

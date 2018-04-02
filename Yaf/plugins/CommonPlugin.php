@@ -14,9 +14,11 @@ class CommonPlugin extends \Yaf_Plugin_Abstract
 
     public function routerStartup(\Yaf_Request_Abstract $request, \Yaf_Response_Abstract $response)
     {
+
         $request->starttime = round(microtime(true) * 1000);        
         $params = \Yaf_Registry::get('REQUEST_GET');
         $request->jsonp = isset($params['callback'])?$params['callback']:'';
+        
     }
 
     /**
@@ -24,7 +26,16 @@ class CommonPlugin extends \Yaf_Plugin_Abstract
      */
 
     public function routerShutdown(\Yaf_Request_Abstract $request, \Yaf_Response_Abstract $response)
-    {	
+    {
+        $config = \ultraman\Foundation\DI::get("main");
+        $common = $config['common'];
+        if(isset($common['appkey']) && isset($common['appsecret']) && $common['appkey']!="" && $common['appsecret']!=""){            
+            $params = \Yaf_Registry::get('REQUEST_POST');
+            if(count($params)==0){
+                $params = \Yaf_Registry::get('REQUEST_GET');                    
+            }
+            \ultraman\Foundation\OpenSign::Auth($params,$common);
+        }
 
     }
 
@@ -34,7 +45,7 @@ class CommonPlugin extends \Yaf_Plugin_Abstract
 
     public function dispatchLoopStartup(\Yaf_Request_Abstract $request, \Yaf_Response_Abstract $response)
     {
-
+      
     }
 
     /**
@@ -45,6 +56,7 @@ class CommonPlugin extends \Yaf_Plugin_Abstract
     public function preDispatch(\Yaf_Request_Abstract $request, \Yaf_Response_Abstract $response)
     {
   
+        
     }	
 
     /**
@@ -62,6 +74,10 @@ class CommonPlugin extends \Yaf_Plugin_Abstract
 
     public function dispatchLoopShutdown(\Yaf_Request_Abstract $request, \Yaf_Response_Abstract $response)
     {
+
+        if(!isset($response->data)){
+            throw new \Exception("API Call Error",500);        
+        }
         $data = $response->data;
         $interval = round(microtime(true) * 1000) - $request->starttime;
         $data['s'] = $interval.'ms';
