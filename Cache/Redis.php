@@ -2,12 +2,13 @@
 
 /**
  * Redis 链接类
- * 
+ *
  * @package   ultraman\Foundation
  * @copyright Copyright (c) 2017, ultraman
  */
 
 namespace ultraman\Cache;
+
 use ultraman\Log\monoLog;
 
 class Redis
@@ -22,7 +23,7 @@ class Redis
 
     /**
      * 绑定配置项
-     * @param $config array 
+     * @param $config array
      */
 
     public static function configure($config)
@@ -37,28 +38,23 @@ class Redis
      */
 
     public static function getRedisInstance($key = 'master')
-    {   
-
+    {
         if (null === static::$_instance) {
             $redis =  new \Redis;
-            \ultraman\Log\monoLog::write("INFO","链接了一次redis");
             $conf = self::$config[$key];
             $timeout = isset($conf['timeout'])?$conf['timeout']:0.2;
             @$connect = $redis->connect($conf['host'], $conf['port'], $timeout);
-
-            if($conf['password']!=''){
-                 $redis->auth($conf['password']);
+            if ($conf['password']!='') {
+                $redis->auth($conf['password']);
             }
-
-            if (!empty($conf['database'])){
-                $redis->select($conf['database']);
-            }
-
-            if($connect){
+            if ($connect) {
+                if (!empty($conf['database'])) {
+                    $redis->select($conf['database']);
+                }
                 static::$_instance = $redis;
-            }else{
-                static::$_instance = '';
-                monoLog::write("ERROR","使用Redis链接失败请处理");
+                return $redis;
+            } else {
+                return 'error';
             }
         }
         return static::$_instance;

@@ -2,7 +2,7 @@
 
 /**
  * Mysql 数据库链接类
- * 封装了数据库连接以及一些简单的查询方法 
+ * 封装了数据库连接以及一些简单的查询方法
  *
  * @package   ultraman\Foundation
  * @copyright Copyright (c) 2017, ultraman
@@ -18,7 +18,7 @@ use ultraman\Foundation\DI;
 class Model
 {
     /**
-     *  @var string _database 类绑定的数据 
+     *  @var string _database 类绑定的数据
      */
 
     protected $_database = 'default';
@@ -48,8 +48,8 @@ class Model
     protected function connect()
     {
         $db = DI::get('database');
-        if($db == ""){
-            throw new \Exception("数据库链接失败",Ecode::SQL_ERROR);
+        if ($db == "") {
+            throw new \Exception("数据库链接失败", Ecode::SQL_ERROR);
         }
         $config = $db[$this->_database];
 
@@ -63,25 +63,25 @@ class Model
             $this->_db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             return $this;
         } catch (\PDOException $e) {
-            throw new \Exception("数据库链接失败",Ecode::SQL_LINK_ERROR);
+            throw new \Exception("数据库链接失败", Ecode::SQL_LINK_ERROR);
         }
     }
     
     /**
      * 方法重载类
      * @param 函数方法
-     * @param参数 
+     * @param参数
      */
 
     public function __call($method, $arguments)
-    {   
+    {
         try {
             if ($this->_db && method_exists($this->_db, $method)) {
                 return call_user_func_array([$this->_db, $method], $arguments);
             }
             return false;
-        }catch(\Exception $e) {
-            if($e->getCode() == 'HY000'){
+        } catch (\Exception $e) {
+            if ($e->getCode() == 'HY000') {
                 $this->connect();
             }
             if ($this->_db && method_exists($this->_db, $method)) {
@@ -89,9 +89,6 @@ class Model
             }
             return false;
         }
-
-
-
     }
 
     /**
@@ -100,13 +97,12 @@ class Model
 
     public function init()
     {
-
     }
 
     /**
      * SQL 条件判断重组
      * @param $params array 参数
-     * @param $f 判断条件 
+     * @param $f 判断条件
      */
 
     public function condition($params, $f = '=')
@@ -128,13 +124,11 @@ class Model
      * @param $params  对应数据
      */
 
-    public function prepareHandle($sentence,$params)
-    {   
+    public function prepareHandle($sentence, $params)
+    {
         $stmt = $this->getStatement($sentence);
         $stmt->execute($params);
-        $count = $stmt->rowCount();
-        return $count ? $count : $this->lastInsertId(); 
-        
+        return  $this->lastInsertId();
     }
 
     /**
@@ -181,7 +175,7 @@ class Model
         $result = '';
         $key = array_keys($params);
         foreach ($key as $k => $v) {
-            $arr[] = ":" . $v;            
+            $arr[] = ":" . $v;
         }
         $result = ' (`' . implode('`,`', $key) . '`) VALUES ('.implode(',', $arr).')';
         return $result;
@@ -192,20 +186,20 @@ class Model
      */
     
 
-    public function select($f=[],$tab='',$params=[])
+    public function select($f=[], $tab='', $params=[])
     {
-        if($tab ==""){
+        if ($tab =="") {
             return false;
         }
         $condition = $this->condition($params);
         $keys = array_keys($f);
-        if($keys !== array_keys($keys)){
+        if ($keys !== array_keys($keys)) {
             $f = $keys;
         }
 
         $str = '';
         foreach ($f as $key => $value) {
-                $str.='`'.$value.'`,';
+            $str.='`'.$value.'`,';
         }
         $str = substr($str, 0, -1)?:"*";
         $items = $this->query("SELECT {$str} FROM {$tab} {$condition}");
@@ -216,14 +210,14 @@ class Model
      *  批量新增封装
      */
 
-    public function batchInsert($tab='',$params)
+    public function batchInsert($tab='', $params)
     {
-        if($tab ==""){
+        if ($tab =="") {
             return false;
         }
         $key = array_keys($params[0]);
         foreach ($key as $k => $v) {
-            $arr[] = ":" . $v;            
+            $arr[] = ":" . $v;
         }
         $sql = 'INSERT INTO '.$tab.' (`' . implode('`,`', $key) . '`) VALUES ';
         foreach ($params as $key => $value) {
@@ -231,11 +225,11 @@ class Model
             foreach ($value as $k => $v) {
                 $str .="'".$v."',";
             }
-            $str = substr($str,0,strlen($str)-1);            
+            $str = substr($str, 0, strlen($str)-1);
             $str .='),';
-            $sql .=$str;           
+            $sql .=$str;
         }
-        $sql = substr($sql,0,strlen($sql)-1);      
+        $sql = substr($sql, 0, strlen($sql)-1);
         $items = $this->exec($sql);
         return $items;
     }
