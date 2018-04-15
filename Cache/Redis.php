@@ -19,7 +19,7 @@ class Redis
      */
 
     protected static $config;
-    protected static $_instance;
+    protected static $_instance = [];
 
     /**
      * 绑定配置项
@@ -39,7 +39,7 @@ class Redis
 
     public static function getRedisInstance($key = 'master')
     {
-        if (null === static::$_instance) {
+        if (!isset(static::$_instance[$key]) ||  count(static::$_instance[$key]) == 0) {
             $redis =  new \Redis;
             $conf = self::$config[$key];
             $timeout = isset($conf['timeout'])?$conf['timeout']:0.2;
@@ -51,12 +51,12 @@ class Redis
                 if (!empty($conf['database'])) {
                     $redis->select($conf['database']);
                 }
-                static::$_instance = $redis;
+                static::$_instance[$key] = $redis;
                 return $redis;
             } else {
                 return 'error';
             }
         }
-        return static::$_instance;
+        return static::$_instance[$key];
     }
 }

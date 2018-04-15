@@ -2,7 +2,7 @@
 
 /**
  * Log 日志类
- * 
+ *
  * @package   ultraman\Tools
  * @copyright Copyright (c) 2017, ultraman
  */
@@ -16,11 +16,11 @@ use ultraman\Foundation\DI;
 
 class monoLog
 {
-	/**
+    /**
      *  @var  config 日志配置项
      */
 
-	protected static $config;
+    protected static $config;
 
     /**
      * @var 数据格式
@@ -40,17 +40,17 @@ class monoLog
      * @param $level 级别处理
      */
 
-	public static function write($level = 'INFO',$params = [])
-	{
-		if(count($params) == 0){
-			return true; 
-		}
-		$item = [];
+    public static function write($level = 'INFO', $params = [])
+    {
+        if (count($params) == 0) {
+            return true;
+        }
+        $item = [];
         $item['query'] = $params;
-        $config = DI::get('log');        
-     	if(count($config) == 0 || $config == ""){
-     		return true;
-     	}
+        $config = DI::get('log');
+        if (count($config) == 0 || $config == "") {
+            return true;
+        }
         
         $logs = stripslashes(json_encode($item, JSON_UNESCAPED_UNICODE));
         static::$config = $config;
@@ -59,13 +59,13 @@ class monoLog
         $source_name = $config['name']?: "default";
         $path = $config['path']?: "/tmp";
         $file = date("Ymd");
-        $base_path = $path."/".$source_name.'/'.$file.'.log';   
+        $base_path = $path."/".$source_name.'/'.$file.'.log';
         $log = new Logger($source_name);
         $log->pushHandler(new StreamHandler($base_path));
         call_user_func_array(array(__NAMESPACE__ .'\monoLog', static::$level), array($log));
-	}
+    }
     
-	public static function __callStatic($name, $log)
+    public static function __callStatic($name, $log)
     {
         return true;
     }
@@ -86,5 +86,4 @@ class monoLog
     {
         $log->addWarning(static::$data);
     }
-
 }
