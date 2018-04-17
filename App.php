@@ -75,13 +75,12 @@ class App
         $command = strtolower(trim(isset($params[2])?$params[2]:''));
         $env = strtolower(trim(isset($params[3])?$params[3]:''));
         $port = strtolower(trim(isset($params[4])?$params[4]:''));
-        if ($port) {
-            \ultraman\Foundation\DI::set('port', $port);
-        }
-
+        \ultraman\Foundation\DI::set('port', $port);
+        
         if (($env == '') || ($service != '-h' && $service!='-t')) {
             return true;
         }
+
         $this->configure($env, $command);
         if ($service == '-h') {
             if ($command == 'start') {

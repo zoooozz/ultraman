@@ -7,16 +7,17 @@
 namespace ultraman\Http;
 
 use ultraman\Foundation\Ecode;
+use ultraman\Foundation\DI;
 
 class SwooleHttpServer
 {
     protected static $_config = [];
     public function __construct($config)
     {
-        $port = \ultraman\Foundation\DI::get('port');
-        if ($port!="") {
-            $config['port'] = $port;
+        if (DI::get('port') != '') {
+            $config['port'] = DI::get('port');
         }
+
         if ($config['host'] == '' || $config['port'] == '') {
             throw new Exception("服务器配置错误", Ecode::ERROR);
         }
