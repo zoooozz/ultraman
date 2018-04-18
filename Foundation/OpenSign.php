@@ -19,6 +19,8 @@ class OpenSign
         if (!isset($header['appkey']) || $header['appkey'] !=$common['appkey']) {
             throw new \Exception("header sign is Error", 400);
         }
+        \ultraman\Log\monoLog::write("INFO", $header);
+        
         $timestamp = $header['timestamp'];
         $time = time();
         $last = $time - 10 * 60;

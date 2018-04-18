@@ -2,55 +2,56 @@
 
 /**
  * DataValidator 过滤器
- * 
+ *
  * @package   ultraman\Tools
  * @copyright Copyright (c) 2017, ultraman
  */
 
 namespace ultraman\Common;
+
 use ultraman\Common\CommonFun;
 
 class DataValidator
 {
-
     const INT = 'int';
     const NUMBER = 'number';
     const BOOL = 'bool';
 
-	/**
-	 * Emoji表情处理
+    /**
+     * Emoji表情处理
      * @param $str 处理的表情字符
-	 */
+     */
 
-	public static function filterEmoji($str)
+    public static function filterEmoji($str)
     {
         $str = preg_replace_callback(
                 '/./u',
                 function (array $match) {
                     return strlen($match[0]) >= 4 ? '' : $match[0];
                 },
-                $str);
+                $str
+        );
 
-         return $str;
+        return $str;
     }
 
     
-    public static function Student($_supports,$params)
+    public static function Student($_supports, $params)
     {
         $items = [];
         foreach ($_supports as $key => $value) {
-            if(is_array($value) || $value == ""){
+            if (is_array($value) || $value == "") {
                 continue;
             }
-            $count = substr_count($value,'|'); 
-            if($count!=0){
-                $str = CommonFun::explode_keys("|",$value);
-            }else{
+            $count = substr_count($value, '|');
+            if ($count!=0) {
+                $str = CommonFun::explode_keys("|", $value);
+            } else {
                 $str[0] = trim($value);
                 $str[1] = "string";
             }
             $item = isset($params[$str[0]])?$params[$str[0]]:"";
-            $items[$key] = CommonFun::Types($item,$str[1]);
+            $items[$key] = CommonFun::Types($item, $str[1]);
         }
         return $items;
     }
@@ -72,7 +73,4 @@ class DataValidator
             return true;
         }
     }
-
-    
-	
 }
