@@ -16,12 +16,16 @@ class OpenSign
     public static function Auth($params, $common)
     {
         $header = \Yaf_Registry::get('REQUEST_HEADER');
+        
         if (!isset($header['appkey']) || $header['appkey'] !=$common['appkey']) {
             throw new \Exception("header sign is Error", 400);
         }
-        \ultraman\Log\monoLog::write("INFO", $header);
+
+        if ($header['appkey'] == $common['appkey'] && isset($header['appsecret']) && $header['appsecret']!="" && $header['appsecret'] == $common['appsecret']) {
+            return true;
+        }
         
-        $timestamp = $header['timestamp'];
+        $timestamp = isset($header['timestamp'])?$header['timestamp']:0;
         $time = time();
         $last = $time - 10 * 60;
         $next = $time + 10 * 60;
@@ -33,11 +37,13 @@ class OpenSign
         foreach ($params as $k => $v) {
             $sign .= ($k . '=' . urlencode(urldecode($v)));
         }
+        \ultraman\Log\monoLog::write("INFO", 'sign:_'.$sign);
+        \ultraman\Log\monoLog::write("INFO", $params);
+        
         $sign = md5($sign);
         if ($sign == $header['sign']) {
             return true;
         }
-        \ultraman\Log\monoLog::write("INFO", $params);
         
         throw new \Exception("sign is Error", 400);
     }

@@ -10,24 +10,22 @@ use ultraman\Foundation\Response;
 
 class BaseController extends \Yaf_Controller_Abstract
 {
-    
     protected $route_method_map = [];
 
     /**
-     *  方法的方式验证 
+     *  方法的方式验证
      */
     
     public function init()
     {
-        $request = $this->getRequest();        
-        if(count($this->route_method_map) == 0 || !isset($this->route_method_map[$request->action])){
+        $request = $this->getRequest();
+        if (count($this->route_method_map) == 0 || !isset($this->route_method_map[$request->action])) {
             return true;
         }
         $action = strtolower($request->action);
         if (!in_array($request->method, $this->route_method_map[$request->action])) {
-            throw new \Exception("Method Not Allowed",500);
+            throw new \Exception("Method Not Allowed", 500);
         }
-
     }
 
    
@@ -35,10 +33,10 @@ class BaseController extends \Yaf_Controller_Abstract
      *  输出结果信息
      */
 
-    public function output($params,$code = '401')
-    {        
-        $params['ts'] = (string)time();    
-        $params['code'] = $code;    
+    public function output($params, $code = '401')
+    {
+        $params['ts'] = (string)time();
+        $params['code'] = $code;
         $this->getResponse()->data = $params;
     }
 
@@ -49,22 +47,21 @@ class BaseController extends \Yaf_Controller_Abstract
      */
 
     public function get($name = '')
-    {   
-
-        if(count($_GET) == 0){
+    {
+        if (count($_GET) == 0) {
             $params = \Yaf_Registry::get('REQUEST_GET');
-        }else{
+        } else {
             $params = $_GET;
         }
         $items = [];
-        if(count($params)!=0){
+        if (count($params)!=0) {
             $items = [];
             foreach ($params as $key => $value) {
                 $items[$key] = trim($value);
             }
         }
     
-        if($name != '' && isset($items[$name])){
+        if ($name != '' && isset($items[$name])) {
             $items = $items[$name];
         }
 
@@ -80,21 +77,21 @@ class BaseController extends \Yaf_Controller_Abstract
 
     public function Post($name='')
     {
-        if(count($_POST) == 0){
+        if (count($_POST) == 0) {
             $params = \Yaf_Registry::get('REQUEST_POST');
-        }else{
+        } else {
             $params = $_POST;
         }
     
         $items = [];
-        if(count($params)!=0){
+        if (count($params)!=0) {
             $items = [];
             foreach ($params as $key => $value) {
                 $items[$key] = trim($value);
             }
         }
     
-        if($name != '' && isset($items[$name])){
+        if ($name != '' && isset($items[$name])) {
             $items = $items[$name];
         }
         return $params;
@@ -111,5 +108,4 @@ class BaseController extends \Yaf_Controller_Abstract
         $http->task($params);
         return true;
     }
-
 }
