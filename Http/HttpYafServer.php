@@ -6,6 +6,8 @@
 
 namespace ultraman\Http;
 
+use League\CLImate\CLImate;
+
 define('AUTHLOAD', dirname(dirname(dirname(dirname(__FILE__)))));
 define('APPLICATION_PATH', dirname(dirname(dirname(dirname(dirname(__FILE__))))));
 
@@ -15,15 +17,21 @@ class HttpYafServer
 {
     protected $application;
     protected $http;
-    public function __construct()
+    protected $pid;
+    protected $climate;
+    
+  
+    public function run()
     {
-        new \ultraman\App();
-        $this->run();
-    }
-
-    private function run()
-    {
+        $this->climate = new CLImate();
+        
         $config = @parse_ini_file(APPLICATION_PATH."/conf/main.ini", true);
+        $this->pid = APPLICATION_PATH.'/'.$config['common']['application.service_name'].'-service.pid';
+        if ($this->isRunning()) {
+            $this->climate->error('服务已经启动');
+            die;
+        }
+
         $http_service = $config['http-service'];
         $app = new \ultraman\Http\SwooleHttpServer($http_service);
         $http = $app->connent();
@@ -93,6 +101,7 @@ class HttpYafServer
         $name = $config['common']['application.service_name'];
         echo $name."服务启动\n";
         @cli_set_process_title($name);
+        file_put_contents($this->pid, $serv->master_pid);
     }
 
 
@@ -143,5 +152,61 @@ class HttpYafServer
         $params = unserialize($data);
         $taskdata['msg'] = "异步任务当前进程 {$task_id} 执行完成";
         \ultraman\Log\monoLog::write("INFO", $taskdata);
+    }
+
+    /**
+     * 判断服务是否已经启动
+     * @return bool
+     */
+    public function isRunning()
+    {
+        if (!file_exists($this->pid)) {
+            return false;
+        }
+
+        $pid = file_get_contents($this->pid);
+        return (bool) posix_getpgid($pid);
+    }
+
+    /**
+     * 获取进程id
+     */
+    private function getPid()
+    {
+        $this->climate = new CLImate();
+        $config = @parse_ini_file(APPLICATION_PATH."/conf/main.ini", true);
+        $this->pid = APPLICATION_PATH.'/'.$config['common']['application.service_name'].'-service.pid';
+        if (!file_exists($this->pid)) {
+            $this->climate->error("没有这个进程");
+            die;
+        }
+
+        $pid = file_get_contents($this->pid);
+        if (posix_getpgid($pid)) {
+            return $pid;
+        }
+        unlink($this->pid);
+        return false;
+    }
+
+    public function stop()
+    {
+        $pid = $this->getPid();
+        posix_kill($pid, SIGTERM);
+        usleep(500);
+        posix_kill($pid, SIGKILL);
+        unlink($this->pid);
+        return false;
+    }
+
+
+    
+    /**
+     * 重载服务
+     */
+    public function reload()
+    {
+        posix_kill($this->getPid(), SIGUSR1);
+        return true;
     }
 }

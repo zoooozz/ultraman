@@ -13,9 +13,11 @@ namespace ultraman;
 
 use ultraman\Foundation\DI;
 use League\CLImate\CLImate;
+use Symfony\Component\Console\Command\Command;
 
 class App
 {
+
     /**
      * 构造函数 入口加载配置文件进行注入
      *
@@ -30,23 +32,141 @@ class App
      *  入口文件加载
      */
 
-    public function __construct($config = [])
+    public function __construct()
     {
         require dirname(dirname(__FILE__)."/../").'/vendor/autoload.php';
-        if (count($config) == 0) {
-            return true;
+    }
+    /**
+     *  服务器启动
+     */
+
+    public function run($params)
+    {
+        $this->climate = new CLImate();
+        $item['service'] = $params[1]??'';
+        $item['command'] = $params[2]??'';
+        $item['env'] = $params[3]??'';
+        DI::set("port", $params[4]??'');
+        $this->configure($item['env']);
+        if ($item['service'] == '--help') {
+            $this->help();
         }
-        $this->injection($config);
+        if ($item['service'] == '-h') {
+            if (in_array($item['command'], ['start', 'stop', 'reload'])) {
+                call_user_func([$this, $item['command']]);
+            } else {
+                $this->help();
+            }
+        }
+
+        if ($item['service'] == '-t') {
+            if (in_array($item['command'], ['start', 'stop', 'reload'])) {
+                call_user_func([$this, $item['command']]);
+            } else {
+                $this->help();
+            }
+        }
+
+
+
+        $this->injection();
+    }
+    
+    //启动
+    public function start()
+    {
+        $climate = $this->climate;
+        $climate->style->addCommand('rage', ['green','bold']);
+        $climate->br(1)->rage('Server is starting....');
+        $app = new \ultraman\Http\HttpYafServer();
+        $app->run();
+    }
+
+    //停止
+    private function stop()
+    {
+        $climate = $this->climate;
+        $climate->style->addCommand('rage', ['green','bold']);
+        $climate->br(1)->rage('Server is stopping....');
+        $app = new \ultraman\Http\HttpYafServer();
+        $app->stop();
+        $climate->br(1)->rage('Server is stopping....ok');
+        die;
+    }
+    //重载服务
+    public function reload()
+    {
+        $climate = $this->climate;
+        $climate->style->addCommand('rage', ['green','bold']);
+        $climate->br(1)->rage('Server is reloadping....');
+        $app = new \ultraman\Http\HttpYafServer();
+        $app->reload();
+        $climate->br(1)->rage('Server is reloadping....ok');
+        die;
+    }
+
+    //帮助
+    public function help()
+    {
+        $climate = $this->climate;
+  
+        $climate->style->addCommand('rage', ['green','bold']);
+        $climate->br(2)->rage('欢迎使用');
+        $climate->addArt(dirname(dirname(__FILE__)."/../")."/Foundation/");
+        $climate->br(2)->draw('ultraman');
+        $climate->style->addCommand('holler', ['underline', 'green', 'bold']);
+        $climate->br(2)->holler('帮助');
+        $climate->br(2)->info('php cli  (-h|-t)   (start|stop|reload) (env) （port）');
+        $climate->br(1)->info('php cli -h start test 启动测试环境');
+        $climate->br(1)->info('php cli -h start dev  启动开发环境');
+        $climate->br(1)->info('php cli -h start prod 启动正式环境');
+        $climate->br(1)->info('php cli -h start pre  启动预发布环境');
+        die;
+    }
+
+    //环境注入
+    private function configure($env='')
+    {
+        $config = dirname(dirname(dirname(dirname(__FILE__))));
+        if ($env != '') {
+            $conf = dir($config.'/conf');
+            while (false != ($item = $conf->read())) {
+                if ($item == '.' || $item == '..') {
+                    continue;
+                }
+                unlink($conf->path.'/'.$item);
+            }
+
+            $env = dir($config.'/env/'.$env);
+            while (false != ($item = $env->read())) {
+                if ($item == '.' || $item == '..') {
+                    continue;
+                }
+                copy($env->path.'/'.$item, $conf->path.'/'.$item);
+            }
+        }
+        $conf = dir($config.'/conf');
+        while (false != ($item = $conf->read())) {
+            if ($item == '.' || $item == '..') {
+                continue;
+            }
+            $houzhui = substr(strrchr($item, '.'), 1);
+            $keys = basename($item, ".".$houzhui);
+            $params[$keys] = $conf->path.'/'.$item;
+        }
+        $this->injection($params);
+        return true;
     }
 
     /**
      *  依赖文件注入
      */
-    
-    public function injection($params)
+
+    public function injection($params=[])
     {
         foreach ($params as $key => $class) {
             $f = pathinfo($class, PATHINFO_EXTENSION);
+            $conf = "";
             if ($f === 'php') {
                 $conf = @include $class;
                 if ($conf == "") {
@@ -61,121 +181,6 @@ class App
             }
             DI::set($key, $conf);
         }
-        return true;
-    }
-
-    /**
-     *  服务器启动
-     */
-
-    public function ServiceRun($params)
-    {
-        $this->climate = new CLImate();
-        $service = strtolower(trim(isset($params[1])?$params[1]:''));
-        $command = strtolower(trim(isset($params[2])?$params[2]:''));
-        $env = strtolower(trim(isset($params[3])?$params[3]:''));
-        $port = strtolower(trim(isset($params[4])?$params[4]:''));
-        \ultraman\Foundation\DI::set('port', $port);
-        
-        if (($env == '') || ($service != '-h' && $service!='-t')) {
-            return true;
-        }
-
-        $this->configure($env, $command);
-        if ($service == '-h') {
-            if ($command == 'start') {
-                $app = new \ultraman\Http\HttpYafServer();
-            }
-            if ($command == 'reload') {
-                $this->reloadSwoole($service, $env);
-            }
-        }
-        if ($service == '-t') {
-            if ($command == 'start') {
-                $app = new \ultraman\Tcp\SwooleServer($params);
-            }
-
-            if ($command == 'reload') {
-                $this->reloadSwoole($service, $env);
-            }
-        }
-        
-        return true;
-    }
-    
-    /**
-     *  服务重启
-     */
-
-
-    private function reloadSwoole($service, $env)
-    {
-        $os = strtoupper(substr(PHP_OS, 0, 3));
-        if ($os == 'DAR') {
-            $climate = new climate();
-            $climate->error('reload 只支持linux电脑 mac 直接强杀');
-            exit(0);
-        }
-
-        $config = DI::get('main');
-        $class = dirname(dirname(dirname(dirname(__FILE__)))).'/env/'.$env.'/main.ini';
-        $config = @parse_ini_file($class, true);
-        
-        $name = $config['common']['application.service_name'];
-        if ($name == '') {
-            return true;
-        }
-
-        if ($service === '-t') {
-            $name = $name.'tcp';
-            $pid = exec('pidof'.' '.$name);
-            if ($pid != '') {
-                exec("kill -TERM ".$pid);
-                sleep(1);
-                $app = new \ultraman\Tcp\SwooleServer();
-            }
-        } elseif ($service === '-h') {
-            $pid = exec('pidof'.' '.$name);
-            if ($pid !='') {
-                exec("kill -USR1 ".$pid);
-            } else {
-                $app = new \ultraman\Http\HttpYafServer();
-            }
-        }
-        exit;
-    }
-    
-        
-
-    /**
-     *  配置文件环境加载
-     */
-
-    private function configure($env, $command)
-    {
-        $config = dirname(dirname(dirname(dirname(__FILE__))));
-        $conf = dir($config.'/conf');
-        $env = dir($config.'/env/'.$env);
-        
-        while (false != ($item = $conf->read())) {
-            if ($item == '.' || $item == '..') {
-                continue;
-            }
-            unlink($conf->path.'/'.$item);
-        }
-   
-        while (false != ($item = $env->read())) {
-            if ($item == '.' || $item == '..') {
-                continue;
-            }
-            copy($env->path.'/'.$item, $conf->path.'/'.$item);
-            
-            $houzhui = substr(strrchr($item, '.'), 1);
-            $keys = basename($item, ".".$houzhui);
-            $params[$keys] = $conf->path.'/'.$item;
-        }
-        //加载配置文件
-        $this->injection($params);
         return true;
     }
 }

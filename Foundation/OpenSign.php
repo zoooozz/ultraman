@@ -16,6 +16,7 @@ class OpenSign
     public static function Auth($params, $common)
     {
         $header = \Yaf_Registry::get('REQUEST_HEADER');
+        \ultraman\Log\monoLog::write("INFO", 'server__'.json_encode($header));
         
         if (!isset($header['appkey']) || $header['appkey'] !=$common['appkey']) {
             throw new \Exception("header sign is Error", 400);
