@@ -26,13 +26,18 @@ class HttpYafServer
         $this->climate = new CLImate();
         
         $config = @parse_ini_file(APPLICATION_PATH."/conf/main.ini", true);
-        $this->pid = APPLICATION_PATH.'/'.$config['common']['application.service_name'].'-service.pid';
+        $this->pid = APPLICATION_PATH.'/'.$config['common']['application.service_name'].'-http-service.pid';
         if ($this->isRunning()) {
             $this->climate->error('服务已经启动');
             die;
         }
 
-        $http_service = $config['http-service'];
+        $http_service = $config['http-service']??'';
+        if ($http_service == '') {
+            $this->climate->error('未配置http服务器');
+            die;
+        }
+        
         $app = new \ultraman\Http\SwooleHttpServer($http_service);
         $http = $app->connent();
         $this->http = $http;
@@ -43,7 +48,6 @@ class HttpYafServer
         $http->on('finish', array($this, 'onFinish'));
         $http->start();
     }
-
 
     public function onRequest($request, $response)
     {
@@ -76,7 +80,6 @@ class HttpYafServer
         $response->end($result);
     }
 
-
     public function onWorkerStart($serv, $worker_id)
     {
         $config = APPLICATION_PATH.'/conf/main.ini';
@@ -99,9 +102,8 @@ class HttpYafServer
     {
         $config = @parse_ini_file(APPLICATION_PATH."/conf/main.ini", true);
         $name = $config['common']['application.service_name'];
-        echo $name."服务启动\n";
-        @cli_set_process_title($name);
         file_put_contents($this->pid, $serv->master_pid);
+        echo $name."服务启动\n";
     }
 
 
@@ -154,10 +156,6 @@ class HttpYafServer
         \ultraman\Log\monoLog::write("INFO", $taskdata);
     }
 
-    /**
-     * 判断服务是否已经启动
-     * @return bool
-     */
     public function isRunning()
     {
         if (!file_exists($this->pid)) {
@@ -168,14 +166,11 @@ class HttpYafServer
         return (bool) posix_getpgid($pid);
     }
 
-    /**
-     * 获取进程id
-     */
     private function getPid()
     {
         $this->climate = new CLImate();
         $config = @parse_ini_file(APPLICATION_PATH."/conf/main.ini", true);
-        $this->pid = APPLICATION_PATH.'/'.$config['common']['application.service_name'].'-service.pid';
+        $this->pid = APPLICATION_PATH.'/'.$config['common']['application.service_name'].'-http-service.pid';
         if (!file_exists($this->pid)) {
             $this->climate->error("没有这个进程");
             die;
@@ -198,12 +193,6 @@ class HttpYafServer
         unlink($this->pid);
         return false;
     }
-
-
-    
-    /**
-     * 重载服务
-     */
     public function reload()
     {
         posix_kill($this->getPid(), SIGUSR1);

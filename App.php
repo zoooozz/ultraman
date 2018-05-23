@@ -27,6 +27,7 @@ class App
      */
 
     protected $climate;
+    protected $_service;
 
     /**
      *  入口文件加载
@@ -51,6 +52,7 @@ class App
         if ($item['service'] == '--help') {
             $this->help();
         }
+        $this->_service = $item['service'];
         if ($item['service'] == '-h') {
             if (in_array($item['command'], ['start', 'stop', 'reload'])) {
                 call_user_func([$this, $item['command']]);
@@ -78,7 +80,12 @@ class App
         $climate = $this->climate;
         $climate->style->addCommand('rage', ['green','bold']);
         $climate->br(1)->rage('Server is starting....');
-        $app = new \ultraman\Http\HttpYafServer();
+
+        if ($this->_service == '-h') {
+            $app = new \ultraman\Http\HttpYafServer();
+        } elseif ($this->_service == '-t') {
+            $app = new \ultraman\Tcp\SwooleServer();
+        }
         $app->run();
     }
 
@@ -88,18 +95,28 @@ class App
         $climate = $this->climate;
         $climate->style->addCommand('rage', ['green','bold']);
         $climate->br(1)->rage('Server is stopping....');
-        $app = new \ultraman\Http\HttpYafServer();
+
+        if ($this->_service == '-h') {
+            $app = new \ultraman\Http\HttpYafServer();
+        } elseif ($this->_service == '-t') {
+            $app = new \ultraman\Tcp\SwooleServer();
+        }
         $app->stop();
         $climate->br(1)->rage('Server is stopping....ok');
         die;
     }
+
     //重载服务
     public function reload()
     {
         $climate = $this->climate;
         $climate->style->addCommand('rage', ['green','bold']);
         $climate->br(1)->rage('Server is reloadping....');
-        $app = new \ultraman\Http\HttpYafServer();
+        if ($this->_service == '-h') {
+            $app = new \ultraman\Http\HttpYafServer();
+        } elseif ($this->_service == '-t') {
+            $app = new \ultraman\Tcp\SwooleServer();
+        }
         $app->reload();
         $climate->br(1)->rage('Server is reloadping....ok');
         die;
@@ -116,11 +133,12 @@ class App
         $climate->br(2)->draw('ultraman');
         $climate->style->addCommand('holler', ['underline', 'green', 'bold']);
         $climate->br(2)->holler('帮助');
-        $climate->br(2)->info('php cli  (-h|-t)   (start|stop|reload) (env) （port）');
-        $climate->br(1)->info('php cli -h start test 启动测试环境');
-        $climate->br(1)->info('php cli -h start dev  启动开发环境');
-        $climate->br(1)->info('php cli -h start prod 启动正式环境');
-        $climate->br(1)->info('php cli -h start pre  启动预发布环境');
+        $climate->br(1)->out('基础命令:<bold><green>php cli (-h|-t) (start|stop|reload) (env) (port)</green></bold> 启动');
+        $climate->br(1)->out('<bold><green>-h / -t:</green></bold> -h 启动http服务 -t 启动tcp服务');
+        $climate->br(1)->out('<bold><green>start / stop / reload:</green></bold> start 启动服务 stop 停止服务 reload重载服务');
+        $climate->br(1)->out('<bold><green>env:</green></bold> 环境区分建议为dev test pre prod');
+        $climate->br(1)->out('<bold><green>port:</green></bold> 环境端口 可不填写默认读取main.ini配置');
+        $climate->br(5);
         die;
     }
 
