@@ -2,7 +2,7 @@
 
 /**
  * CommonFun 公用方法
- * 
+ *
  * @package   ultraman\Tools
  * @copyright Copyright (c) 2017, ultraman
  */
@@ -13,22 +13,22 @@ class CommonFun
 {
     /**
      * 数据过滤
-     * @param array $keys 
-     * @param array $params 
+     * @param array $keys
+     * @param array $params
      */
 
-	public static function FilterNULL($keys,$params)
+    public static function FilterNULL($keys, $params)
     {
-        if(count($keys) == 0 || count($params) == 0 ){
+        if (count($keys) == 0 || count($params) == 0) {
             return $params;
         }
 
         $item = [];
         foreach ($keys as $key => $value) {
-            if(!isset($params[$value])){
+            if (!isset($params[$value])) {
                 continue;
             }
-            if($params[$value] !== ""){
+            if ($params[$value] !== null) {
                 $item[$value] = $params[$value];
             }
         }
@@ -40,7 +40,7 @@ class CommonFun
      *  类型转换
      */
 
-    public static function Types($params,$types)
+    public static function Types($params, $types)
     {
         switch ($types) {
             case 'int':
@@ -72,10 +72,10 @@ class CommonFun
      *  重新封装分割
      */
 
-    public static function explode_keys($key,$params)
+    public static function explode_keys($key, $params)
     {
         $items = [];
-        if($params == ""){
+        if ($params == "") {
             return $items;
         }
 
@@ -91,9 +91,9 @@ class CommonFun
      *  为参数或字段加引号 或者特殊符号
      */
 
-    public static function Quotes($keys,$params)
+    public static function Quotes($keys, $params)
     {
-        if($keys == ""){
+        if ($keys == "") {
             $keys = "'";
         }
 
@@ -113,5 +113,5 @@ class CommonFun
     {
         list($usec, $sec) = explode(' ', microtime());
         return ((float)$usec + (float)$sec);
-    } 
+    }
 }

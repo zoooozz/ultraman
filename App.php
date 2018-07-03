@@ -47,6 +47,11 @@ class App
         $item['service'] = $params[1]??'';
         $item['command'] = $params[2]??'';
         $item['env'] = $params[3]??'';
+
+        if ($item['service']!="-h" && $item['service']!="-t") {
+            return true;
+        }
+
         DI::set("port", $params[4]??'');
         $this->configure($item['env']);
         if ($item['service'] == '--help') {
